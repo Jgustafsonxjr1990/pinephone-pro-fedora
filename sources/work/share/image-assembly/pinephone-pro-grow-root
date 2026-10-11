@@ -1,0 +1,70 @@
+#!/usr/bin/bash
+# SPDX-License-Identifier: GPL-2.0-only
+# Grow only this image's mounted ext4 root on a PinePhone Pro internal MMC.
+# A VM or SD boot is skipped, so validation cannot repartition the build disk.
+set -euo pipefail
+export LC_ALL=C
+umask 077
+fail() { printf 'PinePhone Pro root growth: %s\n' "$*" >&2; exit 1; }
+skip() { printf 'PinePhone Pro root growth: %s; skipped.\n' "$*"; exit 0; }
+[[ $EUID -eq 0 ]] || fail 'root privileges required.'
+[[ ! -e /var/lib/pinephone-pro/root-expanded ]] || exit 0
+[[ -r /proc/device-tree/compatible ]] || skip 'device tree unavailable'
+tr '\0' '\n' < /proc/device-tree/compatible | grep -Fxq 'pine64,pinephone-pro' || skip 'device is not a PinePhone Pro'
+[[ $(findmnt -n -o FSTYPE --target /) == ext4 && $(findmnt -n -o FSROOT --target /) == / ]] || fail 'mounted root is not the expected ext4 filesystem.'
+root_dev=$(readlink -f "/dev/block/$(findmnt -rn -o MAJ:MIN --target /)")
+[[ $root_dev =~ ^/dev/mmcblk[0-9]+p3$ ]] || skip 'root is not MMC partition 3'
+partition=${root_dev##*/}
+disk=${root_dev%p3}
+disk_name=${disk##*/}
+[[ $(cat "/sys/class/block/$disk_name/device/type") == MMC ]] || skip 'root disk is not internal eMMC'
+[[ $(cat "/sys/class/block/$partition/partition") == 3 ]] || fail 'root partition number is incorrect.'
+[[ $(blockdev --getss "$disk") == 512 ]] || fail 'unexpected eMMC sector size.'
+[[ $(blkid -s PTTYPE -o value "$disk") == gpt ]] || fail 'root disk does not have GPT.'
+[[ $(lsblk -rn -o TYPE "$disk" | awk '$1 == "part" {n++} END {print n+0}') == 3 ]] || fail 'root disk partition count is not three.'
+[[ $(sfdisk --part-label "$disk" 1) == FEDORA_EFI && $(sfdisk --part-label "$disk" 2) == FEDORA_BOOT && $(sfdisk --part-label "$disk" 3) == FEDORA_ROOT ]] || fail 'image partition labels do not match.'
+[[ $(cat "/sys/class/block/${disk_name}p1/start") == 65536 ]] || fail 'image bootloader reserve does not match.'
+[[ $(cat "/sys/class/block/${disk_name}p1/size") == 1024000 && $(cat "/sys/class/block/${disk_name}p2/size") == 4194304 ]] || fail 'image boot partition sizes do not match.'
+configured_uuid=$(sed -n 's/^ROOT_UUID=//p' /etc/pinephone-pro/boot.conf)
+[[ $configured_uuid =~ ^[[:xdigit:]]{8}-[[:xdigit:]]{4}-[[:xdigit:]]{4}-[[:xdigit:]]{4}-[[:xdigit:]]{12}$ ]] || fail 'boot configuration UUID is invalid.'
+[[ $(findmnt -n -o UUID --target /) == "$configured_uuid" && $(blkid -s UUID -o value "$root_dev") == "$configured_uuid" ]] || fail 'configured and mounted root UUID differ.'
+grep -Fxq 'ROOT_FSTYPE=ext4' /etc/pinephone-pro/boot.conf || fail 'boot configuration is not ext4.'
+grep -Fxq 'ROOT_FLAGS=' /etc/pinephone-pro/boot.conf || fail 'boot configuration has incompatible root flags.'
+for command in growpart sgdisk resize2fs partx flock; do command -v "$command" >/dev/null || fail "required command missing: $command"; done
+mkdir -p /var/lib/pinephone-pro /run/lock
+exec 9>/run/lock/pinephone-pro-root-growth.lock
+flock -x 9
+[[ ! -e /var/lib/pinephone-pro/root-expanded ]] || exit 0
+start_before=$(cat "/sys/class/block/$partition/start")
+guid_before=$(blkid -s PARTUUID -o value "$root_dev")
+[[ $start_before == 5283840 ]] || fail 'root partition start does not match the assembled image.'
+[[ $(sfdisk --part-type "$disk" 3 | tr '[:upper:]' '[:lower:]') == 0fc63daf-8483-4772-8e79-3d69d8477de4 ]] || fail 'root partition type is incorrect.'
+# Keep initial table backups across retries after an interrupted expansion.
+if [[ ! -e /var/lib/pinephone-pro/root-growth.before.sfdisk ]]; then
+  sfdisk --dump "$disk" > /var/lib/pinephone-pro/root-growth.before.sfdisk.new
+  mv /var/lib/pinephone-pro/root-growth.before.sfdisk.new /var/lib/pinephone-pro/root-growth.before.sfdisk
+fi
+if [[ ! -e /var/lib/pinephone-pro/root-growth.before.gpt ]]; then
+  sgdisk --backup=/var/lib/pinephone-pro/root-growth.before.gpt.new "$disk"
+  mv /var/lib/pinephone-pro/root-growth.before.gpt.new /var/lib/pinephone-pro/root-growth.before.gpt
+fi
+sync -f /var/lib/pinephone-pro
+boot_before=$(sfdisk --dump "$disk" | awk -v first="${disk}p1" -v second="${disk}p2" '$1 == first || $1 == second')
+set +e
+GROWPART_RESIZER=sgdisk growpart --update=on "$disk" 3 > /var/lib/pinephone-pro/root-growth.log 2>&1
+grow_status=$?
+set -e
+cat /var/lib/pinephone-pro/root-growth.log
+if (( grow_status == 1 )); then
+  grep -q '^NOCHANGE:' /var/lib/pinephone-pro/root-growth.log || fail 'growpart returned an unrecognized no-change result.'
+elif (( grow_status != 0 )); then
+  fail "growpart failed with status $grow_status; table backups have been retained."
+fi
+udevadm settle --timeout=30
+[[ $(cat "/sys/class/block/$partition/start") == "$start_before" && $(blkid -s PARTUUID -o value "$root_dev") == "$guid_before" ]] || fail 'root partition start or GUID changed unexpectedly.'
+boot_after=$(sfdisk --dump "$disk" | awk -v first="${disk}p1" -v second="${disk}p2" '$1 == first || $1 == second')
+[[ $boot_before == "$boot_after" ]] || fail 'boot partitions changed unexpectedly.'
+resize2fs "$root_dev"
+sync -f /
+printf 'root=UUID=%s\npartition=%s\ndisk_bytes=%s\n' "$configured_uuid" "$root_dev" "$(blockdev --getsize64 "$disk")" > /var/lib/pinephone-pro/root-expanded
+printf 'PinePhone Pro root growth complete.\n'

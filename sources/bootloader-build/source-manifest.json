@@ -1,0 +1,61 @@
+{
+  "as_of": "2026-10-10",
+  "u_boot": {
+    "version": "2026.10",
+    "repository": "https://git.u-boot-project.org/u-boot/u-boot.git",
+    "tag_object": "a58e2b7af42c179ace2c6210de0a219fa3f3cf3c",
+    "commit": "5508406582f6f7120dce0c4b3059819a41788db2",
+    "tag_signature": "valid",
+    "release_signer_fingerprint": "F3CEA8743D60E0192F9B4C7A2BE2A0F50ABFE40A",
+    "signer_key_url": "https://keys.openpgp.org/vks/v1/by-fingerprint/F3CEA8743D60E0192F9B4C7A2BE2A0F50ABFE40A"
+  },
+  "trusted_firmware_a": {
+    "version": "2.15.0",
+    "repository": "https://github.com/TrustedFirmware-A/trusted-firmware-a.git",
+    "canonical_repository": "https://git.trustedfirmware.org/TF-A/trusted-firmware-a.git",
+    "tag_object": "9ad327a8d124ce82002614c23e33992d4de6f7cf",
+    "commit": "da738d5eae93af342fdc4995dd3c05acb4c9d757",
+    "tag_signature": "valid",
+    "release_signer_fingerprint": "5D6F896043ADEFDF7B76BFAA89C08CFDB8673E0C",
+    "signer_key_url": "https://github.com/odeprez.gpg",
+    "platform": "rk3399",
+    "linker": "aarch64-linux-gnu-ld.bfd",
+    "linker_reason": "Explicit upstream build option avoids Debian/Ubuntu GCC-driver PMUSRAM overflow; source unmodified. See Debian bug1118651."
+  },
+  "source_archives": {
+    "trusted-firmware-a-v2.15.0.tar.xz": {
+      "sha256": "436fbe5f3771edf84b77ca4efb8c2ed0211845e91d8538243b920f2327f82fdb",
+      "bytes": 11521232
+    },
+    "u-boot-v2026.10.tar.xz": {
+      "sha256": "91931ff90002020b31f953e9c0526c4909765d4d4e0d280e40dbd2ddec232f47",
+      "bytes": 37167644
+    }
+  },
+  "configuration_changes_from_upstream_defconfig": [
+    "CONFIG_ENV_IS_IN_SPI_FLASH disabled; CONFIG_ENV_IS_NOWHERE enabled to avoid SPI environment reads/writes",
+    "CONFIG_ROCKCHIP_SPI_IMAGE disabled; produce eMMC/SD user-area loader only",
+    "CONFIG_TOOLS_MKEFICAPSULE disabled; unused host capsule-generation utility not needed for normal EFI/extlinux boot",
+    "CONFIG_BOOTCOMMAND=\"bootmeth order extlinux && bootflow scan -lb\"; restrict automatic boot to extlinux, preserving EFI for explicit use"
+  ],
+  "build_parallel_jobs": 2,
+  "source_date_epoch": 1791619200,
+  "compiler": "Ubuntu aarch64-linux-gnu-gcc-12 12.4.0; Cortex-M0 gcc-arm-none-eabi 13.2.rel1",
+  "source_tree_modifications": false,
+  "bootrom_disk_offset_bytes": 32768,
+  "FIT_disk_offset_bytes": 8388608,
+  "hardware_boot_tested": false,
+  "device_writes": false,
+  "spi_writes": false,
+  "primary_documentation": [
+    "https://docs.u-boot.org/en/stable/board/rockchip/rockchip.html",
+    "https://docs.u-boot.org/en/stable/develop/distro.html",
+    "https://pine64.org/documentation/General/RK3399_boot_sequence/",
+    "https://pine64.org/documentation/PinePhone_Pro/Software/Multi-distribution_image/",
+    "https://www.trustedfirmware.org/blog/tf-a-v2_15/",
+    "https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=1118651"
+  ],
+  "compiled_bootcommand": "bootmeth order extlinux && bootflow scan -lb",
+  "merged_loader_sha256": "8665b27f27b9caad6976e49c7fd800342726d4d627f95672dad798f6e048b000",
+  "merged_loader_bytes": 9524224
+}

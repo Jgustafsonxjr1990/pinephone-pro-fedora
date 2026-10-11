@@ -1,0 +1,46 @@
+{
+  "commit": "4b5d202c15567da82a2bcb2d580ec0845e63c1d5",
+  "license": "MIT (device package)",
+  "files": [
+    {
+      "path": "ucm/HiFi.conf",
+      "url": "https://gitlab.postmarketos.org/postmarketOS/pmaports/-/raw/4b5d202c15567da82a2bcb2d580ec0845e63c1d5/device/community/device-pine64-pinephonepro/ucm/HiFi.conf",
+      "sha512": "1684514a6b814a83473e9da8855fd776cf3f31a2be1f8834c370f710428b4ee305559e275be52894d167ccd1e32f8f1c8586f8a072f19e44b46caec9f504d453"
+    },
+    {
+      "path": "ucm/PINE64-PinePhonePro-.conf",
+      "url": "https://gitlab.postmarketos.org/postmarketOS/pmaports/-/raw/4b5d202c15567da82a2bcb2d580ec0845e63c1d5/device/community/device-pine64-pinephonepro/ucm/PINE64-PinePhonePro-.conf",
+      "sha512": "9c6edbe7ea387baf9bfa6c4a46b28c4fe274ab0994e0a1640012048407e6679c437de43cc50e6778c9a852132eaa680de3fd4e0256d36455d1dd57aa729ac8be"
+    },
+    {
+      "path": "ucm/VoiceCall.conf",
+      "url": "https://gitlab.postmarketos.org/postmarketOS/pmaports/-/raw/4b5d202c15567da82a2bcb2d580ec0845e63c1d5/device/community/device-pine64-pinephonepro/ucm/VoiceCall.conf",
+      "sha512": "27214fcf94823c3a9deff01c4b7a1cfc6dc8c117d9b5643fea9a15835a04e59524d2a90f522aa3c7440b94cd1b9d9938413abcfdaa838efb008c87eeae7de2e8"
+    },
+    {
+      "path": "90-modem-eg25.rules",
+      "url": "https://gitlab.postmarketos.org/postmarketOS/pmaports/-/raw/4b5d202c15567da82a2bcb2d580ec0845e63c1d5/device/community/device-pine64-pinephonepro/90-modem-eg25.rules",
+      "sha512": "98e9dcfb36dd5843ff441b148e3bffb70757c59601c5f01f55a584e8f017c7ca73f2275c1bff46e4236dd8174df36a43d10abf9b8dadee988b962036846dc6ed"
+    },
+    {
+      "path": "setup-modem.sh",
+      "url": "https://gitlab.postmarketos.org/postmarketOS/pmaports/-/raw/4b5d202c15567da82a2bcb2d580ec0845e63c1d5/device/community/device-pine64-pinephonepro/setup-modem.sh",
+      "sha512": "420ee1d7522d4d56c2909580fd6ba7580483ca5455b13eb6d22e700063ce0c1a5c6d2f5b161dfce0d777636fe9a712aa82f38a0585f2feabea3785b02bae7515"
+    },
+    {
+      "path": "modules-initfs",
+      "url": "https://gitlab.postmarketos.org/postmarketOS/pmaports/-/raw/4b5d202c15567da82a2bcb2d580ec0845e63c1d5/device/community/device-pine64-pinephonepro/modules-initfs",
+      "sha512": "0555be124ef4add4d70b54f550e63b4ff15f099541dbe37c4f61bf64d38bfb8bb8c6b765a0cc6bf361419711b7d1124fd0cbbe8ff459f5e85e6f850d7d2cd88e"
+    },
+    {
+      "path": "kernel-cmdline.conf",
+      "url": "https://gitlab.postmarketos.org/postmarketOS/pmaports/-/raw/4b5d202c15567da82a2bcb2d580ec0845e63c1d5/device/community/device-pine64-pinephonepro/kernel-cmdline.conf",
+      "sha512": "7a17cdb8305dec26f8d78a6c229e9373c2a9d0d63e51d853772b4d78f31c417f217966a75c970121e45045b141b04afa3d7ba4a4f9898a75020512e8e4048d0f"
+    },
+    {
+      "path": "deviceinfo",
+      "url": "https://gitlab.postmarketos.org/postmarketOS/pmaports/-/raw/4b5d202c15567da82a2bcb2d580ec0845e63c1d5/device/community/device-pine64-pinephonepro/deviceinfo",
+      "sha512": "86a365e937e0e9bd420d49463a1140534b07c5ecb375ec9676169ca50c26ccb89116661feea2bd2638bc12d8a057d4c5fb93b939f35ab9d640bc01fec6d514b2"
+    }
+  ]
+}

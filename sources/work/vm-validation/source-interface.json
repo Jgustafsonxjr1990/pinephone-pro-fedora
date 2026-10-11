@@ -1,0 +1,39 @@
+{
+  "status": "source_only_unstarted",
+  "controller_schema": "fresh-validation-v2",
+  "state_directory_layout": "STATE/commands/NAME.{command,started.json,result.json,status,console.log}",
+  "command_sha256_scope": "Exact stored UTF-8 NAME.command bytes, including its single trailing LF if present",
+  "final_exit_requirements": {"qemu_exit": 0, "controller_exit": 0},
+  "phases": {
+    "normal_boot": {
+      "mode": "snapshot",
+      "command": "bash /build/image-assembly/verify-fedora-ppp-vm.sh",
+      "report": "work/share/fedora-ppp-vm-verification.txt",
+      "marker": "FEDORA_PPP_NORMAL_SYSTEMD_BOOT_VERIFIED",
+      "shutdown_command": "bash /build/request-validation-shutdown.sh systemd"
+    },
+    "growth_online": {
+      "mode": "growth",
+      "command": "bash /build/image-assembly/test-virtual-root-growth.sh grow-mounted-root \"$PPP_VERIFY_DISK\"",
+      "report": "work/share/fedora-ppp-growth-test.txt",
+      "marker": "GROWTH_TEST_ONLINE_COMPLETE",
+      "shutdown_command": "bash /build/request-validation-shutdown.sh systemd"
+    },
+    "growth_offline": {
+      "mode": "offline",
+      "command": "bash /build/image-assembly/test-virtual-root-growth.sh check-unmounted-filesystems \"$PPP_GROWTH_DEVICE\"",
+      "report": "work/share/fedora-ppp-growth-test.txt",
+      "marker": "GROWTH_TEST_OFFLINE_FILESYSTEM_CHECKS_COMPLETE",
+      "shutdown_command": "bash /build/request-validation-shutdown.sh offline",
+      "source_disk": "/path/to/workspace/work/fedora44-rebuild.qcow2.crdownload",
+      "source_root_uuid": "6741cdec-fe58-4214-9fa9-3e8eaa52f476",
+      "source_bytes": 12206473216,
+      "source_initramfs": "/path/to/workspace/work/share/fedora-source-initramfs.img"
+    }
+  },
+  "fixed_phase_command_names": false,
+  "command_names_must_be_bound_in_root_reviewed_final_policy": true,
+  "production_launchers_started": false,
+  "physical_hardware_tested": false,
+  "graphics_tested": false
+}

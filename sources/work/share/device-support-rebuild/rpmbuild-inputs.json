@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "status": "fresh_source_inputs_not_built",
+  "files": [
+    {
+      "path": "SOURCES/eg25-manager-2d8a19bfd7a4575489f1cb5adab042ad49ffec88.tar.gz",
+      "size": 58046,
+      "sha256": "806a13aad8a8cce6a8b86ec7925f2356f2aa81f33728a4ebfefe7399405e3b3c"
+    },
+    {
+      "path": "SOURCES/pinephonepro-device-support-10.tar.gz",
+      "size": 112577,
+      "sha256": "d477ec8396d18afef20c9c591440abbf82ed15f87449c815e8c4f2f5fe084df7"
+    },
+    {
+      "path": "SPECS/eg25-manager.spec",
+      "size": 1873,
+      "sha256": "62489a15f5e5abd4d9e71a4f84edefc7f1b1e70f34d8c88a238cb6bd9b8e715e"
+    },
+    {
+      "path": "SPECS/pinephonepro-device-support.spec",
+      "size": 3122,
+      "sha256": "1b82b3442ab00ad8594d9649f5eb7087e7b8fe7d79c3890dc7a6ca6bf41439ec"
+    },
+    {
+      "path": "SOURCES/atinout-0.9.1.tar.gz",
+      "size": 24117,
+      "sha256": "4d15c8288aca414e11cd304686b172696104c5e42bf776300311c005634854a2"
+    },
+    {
+      "path": "SPECS/atinout-pinephonepro.spec",
+      "size": 1485,
+      "sha256": "b7a09da4e4d19975ef4c7c247d447daa64c4ee570c439b222571e05c26e85277"
+    }
+  ],
+  "optional_supplement": {
+    "flag": "--build-atinout-supplement",
+    "expected_nevra": "atinout-pinephonepro-0.9.1-3.fc44.aarch64",
+    "official_provider_query_pending": true
+  }
+}

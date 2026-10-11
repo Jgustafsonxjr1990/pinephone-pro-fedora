@@ -1,0 +1,8 @@
+{
+  "source_url": "https://gitlab.postmarketos.org/postmarketOS/pmaports/-/raw/4b5d202c15567da82a2bcb2d580ec0845e63c1d5/device/community/linux-pine64-pinephonepro/config-pine64-pinephonepro.aarch64",
+  "resolved_url": "https://gitlab.postmarketos.org/postmarketOS/pmaports/-/raw/4b5d202c15567da82a2bcb2d580ec0845e63c1d5/device/community/linux-pine64-pinephonepro/config-pine64-pinephonepro.aarch64",
+  "bytes": 294674,
+  "sha512": "7701172077521d6b6a24236f928e40a5d331d8707bb8e2deda67b7a50a084889d8cecc64d6483f0a0f44d273701a0ef7c9dac79c99057a98cb8a40699f5139e4",
+  "sha256": "45b8866e865cfe4a073d313c8d388fe47a804e29e55deb8dfcf66ba2cfac7934",
+  "status": "pinned_source_verified"
+}

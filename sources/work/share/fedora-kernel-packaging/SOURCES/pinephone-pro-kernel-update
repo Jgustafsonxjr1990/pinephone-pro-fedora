@@ -1,0 +1,164 @@
+#!/usr/bin/bash
+# SPDX-License-Identifier: GPL-2.0-only
+# Generate Fedora initramfs + phone boot menus from an installed kernel RPM.
+# No block-device writes, partition changes or bootloader installation.
+set -euo pipefail
+export PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+export LC_ALL=C
+umask 022
+
+fail() { printf 'PinePhone Pro boot update: %s\n' "$*" >&2; exit 1; }
+[[ $EUID -eq 0 ]] || fail 'run as root in the target Fedora system.'
+[[ $# -eq 1 ]] || fail 'usage: pinephone-pro-kernel-update KERNEL_RELEASE'
+kernel_release=$1
+[[ $kernel_release =~ ^[0-9][A-Za-z0-9._+-]*-jon-ppp$ ]] || fail 'invalid PinePhone Pro kernel release.'
+payload=/usr/share/pinephone-pro/kernel/$kernel_release
+module_dir=/usr/lib/modules/$kernel_release
+[[ -d $payload && -d $module_dir ]] || fail 'matching installed kernel payload/modules missing.'
+for payload_file in Image config System.map kernelrelease rk3399-pinephone-pro.dtb SHA256SUMS MODULES_SHA256SUMS; do
+  [[ -s $payload/$payload_file ]] || fail "missing payload file: $payload_file"
+done
+[[ $(cat "$payload/kernelrelease") == "$kernel_release" ]] || fail 'kernel release mismatch.'
+[[ -s $module_dir/modules.builtin && -s $module_dir/modules.order ]] || fail 'module installation incomplete.'
+[[ $(od -An -tx1 -j56 -N4 "$payload/Image" | tr -d ' \n') == 41524d64 ]] || fail 'Image is not a raw ARM64 Linux Image.'
+[[ $(od -An -tx1 -N4 "$payload/rk3399-pinephone-pro.dtb" | tr -d ' \n') == d00dfeed ]] || fail 'invalid DTB magic.'
+(cd "$payload"; sha256sum --check --strict SHA256SUMS)
+# Validate that RPM post-install processing left all signed module bytes intact.
+# Detailed per-file output is retained by the build log only on failure.
+(cd "$module_dir"; sha256sum --check --strict --quiet "$payload/MODULES_SHA256SUMS")
+
+mountpoint -q /boot || fail '/boot must be a mounted boot filesystem.'
+mountpoint -q /boot/efi || fail '/boot/efi must be the mounted FAT boot filesystem.'
+[[ $(findmnt -n -o FSTYPE --target /boot/efi) == vfat ]] || fail '/boot/efi is not FAT.'
+ROOT_UUID=
+ROOT_FSTYPE=
+ROOT_FLAGS=
+EXTRA_ARGS=
+[[ -r /etc/pinephone-pro/boot.conf ]] || fail 'missing /etc/pinephone-pro/boot.conf.'
+while IFS= read -r config_line || [[ -n $config_line ]]; do
+  case $config_line in
+    ''|'#'*) continue ;;
+    ROOT_UUID=*) ROOT_UUID=${config_line#ROOT_UUID=} ;;
+    ROOT_FSTYPE=*) ROOT_FSTYPE=${config_line#ROOT_FSTYPE=} ;;
+    ROOT_FLAGS=*) ROOT_FLAGS=${config_line#ROOT_FLAGS=} ;;
+    EXTRA_ARGS=*) EXTRA_ARGS=${config_line#EXTRA_ARGS=} ;;
+    *) fail 'unknown line in boot.conf.' ;;
+  esac
+done < /etc/pinephone-pro/boot.conf
+[[ $ROOT_UUID =~ ^[[:xdigit:]]{8}-[[:xdigit:]]{4}-[[:xdigit:]]{4}-[[:xdigit:]]{4}-[[:xdigit:]]{12}$ ]] || fail 'invalid root UUID.'
+[[ $ROOT_FSTYPE == btrfs || $ROOT_FSTYPE == ext4 ]] || fail 'supported root filesystems are btrfs and ext4.'
+[[ $EXTRA_ARGS =~ ^[A-Za-z0-9_.,=/+:\ -]*$ ]] || fail 'unsupported characters in EXTRA_ARGS.'
+[[ $(findmnt -n -o UUID --target /) == "$ROOT_UUID" ]] || fail 'configured root UUID differs from mounted root.'
+[[ $(findmnt -n -o FSTYPE --target /) == "$ROOT_FSTYPE" ]] || fail 'configured root filesystem differs from mounted root.'
+dracut_modules='rootfs-block fs-lib systemd'
+kernel_options="root=UUID=$ROOT_UUID rootfstype=$ROOT_FSTYPE"
+if [[ $ROOT_FSTYPE == btrfs ]]; then
+  [[ $ROOT_FLAGS == subvol=root ]] || fail 'Btrfs source image requires rootflags=subvol=root.'
+  [[ $(findmnt -n -o FSROOT --target /) == /root ]] || fail 'mounted root is not the Fedora root subvolume.'
+  kernel_options+=" rootflags=$ROOT_FLAGS"
+  dracut_modules+=' btrfs'
+else
+  [[ -z $ROOT_FLAGS ]] || fail 'ext4 final image must have empty ROOT_FLAGS.'
+  [[ $(findmnt -n -o FSROOT --target /) == / ]] || fail 'ext4 root has unexpected filesystem root.'
+fi
+kernel_options+=" rw $EXTRA_ARGS"
+
+install -d -m 0755 /run/lock /var/lib/pinephone-pro
+exec 9>/run/lock/pinephone-pro-kernel.lock
+flock -x 9
+staging=$(mktemp -d /boot/.pinephone-pro-update.XXXXXXXX)
+cleanup() { rm -rf -- "$staging"; }
+trap cleanup EXIT
+
+depmod -a "$kernel_release"
+# gzip is deliberately selected: CONFIG_RD_GZIP=y is verified for this kernel.
+# Fedora dracut 108 prefers installed pigz for --gzip, preserving gzip format
+# while compressing across the available CPUs. The tools RPM requires pigz.
+# Avoid embedding the QEMU builder's disk/controller choices or root arguments.
+dracut --force --no-hostonly --no-hostonly-cmdline --gzip \
+  --add "$dracut_modules" "$staging/initramfs.img" "$kernel_release"
+[[ -s $staging/initramfs.img ]] || fail 'dracut did not create an initramfs.'
+lsinitrd "$staging/initramfs.img" > "$staging/initramfs-contents.txt"
+grep -Eq '(^|[[:space:]])init($|[[:space:]])' "$staging/initramfs-contents.txt" || fail 'initramfs /init is absent.'
+# Fresh content-aware reconstruction; exact 21-byte generic Fedora Btrfs hint
+# and an empty single-link etc/machine-id are the only permitted exceptions.
+/usr/sbin/pinephone-pro-initramfs-verify "$staging/initramfs.img" \
+  --audit-json "$staging/initramfs-portability.json" || \
+  fail 'portable initramfs content audit failed; boot files were not published.'
+
+install -d -m 0755 /boot/dtb-"$kernel_release"/rockchip /boot/loader/entries /boot/extlinux
+# FAT does not carry POSIX modes. Avoid install/chmod on that filesystem.
+mkdir -p /boot/efi/extlinux /boot/efi/pinephone-pro/"$kernel_release"
+install -m 0644 "$payload/Image" "$staging/vmlinuz"
+install -m 0644 "$payload/config" "$staging/config"
+install -m 0644 "$payload/System.map" "$staging/System.map"
+install -m 0644 "$payload/rk3399-pinephone-pro.dtb" \
+  /boot/dtb-"$kernel_release"/rockchip/rk3399-pinephone-pro.dtb
+mv -f "$staging/vmlinuz" /boot/vmlinuz-"$kernel_release"
+mv -f "$staging/config" /boot/config-"$kernel_release"
+mv -f "$staging/System.map" /boot/System.map-"$kernel_release"
+mv -f "$staging/initramfs.img" /boot/initramfs-"$kernel_release".img
+chmod 0600 /boot/initramfs-"$kernel_release".img
+
+fat_dir=/boot/efi/pinephone-pro/$kernel_release
+fat_needed=$(( $(stat -c %s /boot/vmlinuz-"$kernel_release") + $(stat -c %s /boot/initramfs-"$kernel_release".img) + $(stat -c %s "$payload/rk3399-pinephone-pro.dtb") + 16777216 ))
+fat_available=$(df --output=avail -B1 /boot/efi | tail -n 1 | tr -d ' ')
+[[ $fat_available =~ ^[0-9]+$ && $fat_available -ge $fat_needed ]] || fail 'insufficient FAT space for safely staged phone kernel/initramfs.'
+cp /boot/vmlinuz-"$kernel_release" "$fat_dir/Image.new"
+cp /boot/initramfs-"$kernel_release".img "$fat_dir/initramfs.img.new"
+cp "$payload/rk3399-pinephone-pro.dtb" "$fat_dir/rk3399-pinephone-pro.dtb.new"
+mv -f "$fat_dir/Image.new" "$fat_dir/Image"
+mv -f "$fat_dir/initramfs.img.new" "$fat_dir/initramfs.img"
+mv -f "$fat_dir/rk3399-pinephone-pro.dtb.new" "$fat_dir/rk3399-pinephone-pro.dtb"
+
+# The main phone path supplies the matching DTB explicitly. Generic Fedora
+# kernel updates cannot replace this dedicated extlinux default.
+for boot_fs in /boot/efi /boot; do
+  boot_cfg=$boot_fs/extlinux/extlinux.conf
+  if [[ -e $boot_cfg ]] && ! grep -q '^# Managed by pinephone-pro-kernel-update$' "$boot_cfg"; then
+    [[ -e $boot_cfg.before-pinephone-pro ]] || cp "$boot_cfg" "$boot_cfg.before-pinephone-pro"
+  fi
+  {
+    printf '%s\n' '# Managed by pinephone-pro-kernel-update' 'MENU TITLE Fedora Linux on PinePhone Pro' 'TIMEOUT 50' 'DEFAULT fedora-ppp' ''
+    printf 'LABEL fedora-ppp\n  MENU LABEL Fedora Linux PinePhone Pro (%s)\n' "$kernel_release"
+    if [[ $boot_fs == /boot/efi ]]; then
+      printf '  LINUX /pinephone-pro/%s/Image\n  INITRD /pinephone-pro/%s/initramfs.img\n  FDT /pinephone-pro/%s/rk3399-pinephone-pro.dtb\n' "$kernel_release" "$kernel_release" "$kernel_release"
+    else
+      printf '  LINUX /vmlinuz-%s\n  INITRD /initramfs-%s.img\n  FDT /dtb-%s/rockchip/rk3399-pinephone-pro.dtb\n' "$kernel_release" "$kernel_release" "$kernel_release"
+    fi
+    printf '  APPEND %s\n' "$kernel_options"
+    for old_payload in /usr/share/pinephone-pro/kernel/*-jon-ppp; do
+      [[ -d $old_payload ]] || continue
+      old_release=${old_payload##*/}
+      [[ $old_release != "$kernel_release" ]] || continue
+      [[ $old_release =~ ^[0-9][A-Za-z0-9._+-]*-jon-ppp$ ]] || continue
+      [[ -s /boot/efi/pinephone-pro/$old_release/Image && -s /boot/efi/pinephone-pro/$old_release/initramfs.img && -s /boot/efi/pinephone-pro/$old_release/rk3399-pinephone-pro.dtb ]] || continue
+      [[ -s /boot/vmlinuz-$old_release && -s /boot/initramfs-$old_release.img && -s /boot/dtb-$old_release/rockchip/rk3399-pinephone-pro.dtb ]] || continue
+      printf '\nLABEL fedora-ppp-%s\n  MENU LABEL Fedora Linux PinePhone Pro (%s, previous)\n' "$old_release" "$old_release"
+      if [[ $boot_fs == /boot/efi ]]; then
+        printf '  LINUX /pinephone-pro/%s/Image\n  INITRD /pinephone-pro/%s/initramfs.img\n  FDT /pinephone-pro/%s/rk3399-pinephone-pro.dtb\n' "$old_release" "$old_release" "$old_release"
+      else
+        printf '  LINUX /vmlinuz-%s\n  INITRD /initramfs-%s.img\n  FDT /dtb-%s/rockchip/rk3399-pinephone-pro.dtb\n' "$old_release" "$old_release" "$old_release"
+      fi
+      printf '  APPEND %s\n' "$kernel_options"
+    done
+  } > "$boot_cfg.new"
+  mv -f "$boot_cfg.new" "$boot_cfg"
+done
+
+# Metadata fallback for EFI GRUB installations. Some Fedora GRUB versions
+# ignore the BLS devicetree key; this is not the certified phone boot path.
+cat > "$staging/bls.conf" <<EOF
+title Fedora Linux PinePhone Pro ($kernel_release)
+version $kernel_release
+linux /vmlinuz-$kernel_release
+initrd /initramfs-$kernel_release.img
+devicetree /dtb-$kernel_release/rockchip/rk3399-pinephone-pro.dtb
+options $kernel_options
+EOF
+mv -f "$staging/bls.conf" /boot/loader/entries/pinephone-pro-"$kernel_release".conf
+printf '%s\n' "$kernel_release" > /var/lib/pinephone-pro/default-kernel.new
+mv -f /var/lib/pinephone-pro/default-kernel.new /var/lib/pinephone-pro/default-kernel
+sync -f /boot/efi
+sync -f /boot
+printf 'PINEPHONE_PRO_BOOT_READY %s\n' "$kernel_release"

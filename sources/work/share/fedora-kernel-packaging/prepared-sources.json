@@ -1,0 +1,7 @@
+{
+  "archive": "/path/to/workspace/fedora-kernel-packaging/SOURCES/kernel-pinephone-pro-7.2.9.tar.gz",
+  "sha256": "7e013e8886808891ebf1ec704284b1b530315b3f303da8ff2c6a42dfc39096c4",
+  "kernel_release": "7.2.9-jon-ppp",
+  "module_count": 906,
+  "image_required_bytes": 36110336
+}

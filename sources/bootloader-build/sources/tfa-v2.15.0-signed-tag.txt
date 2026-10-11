@@ -1,0 +1,22 @@
+object da738d5eae93af342fdc4995dd3c05acb4c9d757
+type commit
+tag v2.15.0
+tagger Olivier Deprez <olivier.deprez@arm.com> 1780042091 +0200
+
+Trusted Firmware-A release v2.15.0
+-----BEGIN PGP SIGNATURE-----
+
+iQIzBAABCgAdFiEEXW+JYEOt7997dr+qicCM/bhnPgwFAmoZSWsACgkQicCM/bhn
+PgyQ9w//SAWoube7z3F6Qh0e1nmmwl8Q1Mlw0ssRxSxgBGaHxSwA7yrsLrD94o4e
+6PFC7ey4yiNoWoAWHEftEFHbh2hoKwPxV4LeBEe/kjjrkySZcoDyLoVTZdrK5/83
+w48+5w+/CvKHX3FUE9asxCkZKUhs0mh1thrHyvzlt7Ob+qhi+HK8qotvF6xZ8NG+
+Y4gtOp9fmN3kKfbxIEXblbQC6DJIGX9ZBxkB9iz/7ZoHNCrw/9JxHqNcBEPuBrGw
+AjbMhqVHLgtSFfzNqRgWZJp5JgrdA94aM9HGVamrJ2GCh+vCyP0YHQy6pP/QRUU1
+GaZ75ycbcyoq+4BHtZqYdideuYnZvYFh5mtfHzPUv/LOenP6UWtSFJvoyE9LGMPk
+T2wl83Yk0FgBdIzdeMXgJXtsmQ+MTkCyjm+bUGFEDpAL8+g/oPcJr8IEz0YgsHK5
+cAVQnbvK4KFB/Q8zP6FfWS1VJ16pOYJQWVaFAHRNE7npuRFFT8fDltftbRh6Svd7
+02KlhBHzY5DLInt3jWWPQ/xJpnKf5g6Nq80TPhpGmUbTSoqu0SBUZ1fnTek9Xaxb
+Uz5f2kbltcWZrMYCjagnPQp0cp3Nx0Tt/ABe2rP4uiZLf48WdiUcsCYS9W3katVP
+PmgXeuvZNM7sHiI/THlht7w5DGVmr0FaKzLHbezQw7+5HwrDo3M=
+=9j+p
+-----END PGP SIGNATURE-----

@@ -1,0 +1,14 @@
+[Unit]
+Description=Expand Fedora PinePhone Pro internal eMMC root filesystem
+After=local-fs.target systemd-remount-fs.service
+Before=display-manager.service multi-user.target graphical.target
+ConditionPathExists=!/var/lib/pinephone-pro/root-expanded
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/pinephone-pro-grow-root
+RemainAfterExit=yes
+TimeoutStartSec=15min
+
+[Install]
+WantedBy=multi-user.target

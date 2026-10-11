@@ -1,0 +1,49 @@
+{
+  "expected_module_count": 906,
+  "files": {
+    "../native-fixtures.sh": {
+      "sha256": "b89af4205b85767e5bea080e0a0af59eed396ddb4f54fb5e2a2715c7b3be3182",
+      "size_bytes": 4542
+    },
+    "SOURCES/GPL-2.0": {
+      "sha256": "8780e78a1a737e127f25a65f6d95269bffd36158dc261114de7859b490bfc5aa",
+      "size_bytes": 18600
+    },
+    "SOURCES/README.md": {
+      "sha256": "ce275d54ae9c4f113a236f6af57db88a8f2b452a3084207b352b36ba866efa29",
+      "size_bytes": 2929
+    },
+    "SOURCES/boot.conf": {
+      "sha256": "1f7ccbf0b6327689352a14834c592583c4d398021bac8ad870a08bbcfa1be7da",
+      "size_bytes": 423
+    },
+    "SOURCES/kernel-pinephone-pro-7.2.9.tar.gz": {
+      "sha256": "7e013e8886808891ebf1ec704284b1b530315b3f303da8ff2c6a42dfc39096c4",
+      "size_bytes": 27635674
+    },
+    "SOURCES/pinephone-pro-initramfs-verify": {
+      "sha256": "df3faf733f7df46fa4b9b364f7df8f4d314678d23d4cfef73fc131f0a7f94551",
+      "size_bytes": 15264
+    },
+    "SOURCES/pinephone-pro-kernel-update": {
+      "sha256": "6ec9af0d5864ad83188ebbfba95b349fd69d4468c46b326de06ef875bd654dca",
+      "size_bytes": 9945
+    },
+    "SPECS/kernel-pinephone-pro.spec": {
+      "sha256": "1f056f55980a56a57b988c07fc362e0f0e1ad25c99d85277cc2252fa9670de99",
+      "size_bytes": 8089
+    }
+  },
+  "kernel_release": "7.2.9-jon-ppp",
+  "package_release": "3.fc44",
+  "payload": {
+    "image_file_bytes": 35195392,
+    "image_reserved_memory_bytes": 36110336,
+    "kernel_release": "7.2.9-jon-ppp",
+    "module_count": 906,
+    "modules_signed": true
+  },
+  "schema_version": 1,
+  "source_topdir": "/build/fedora-kernel-packaging",
+  "status": "source_only_prepared_not_executed"
+}

@@ -1,0 +1,56 @@
+{
+  "format": "pinephone-pro-public-release-verification-v1",
+  "release_date": "2026-10-11",
+  "base": "Fedora 44 KDE Mobile 44-1.7 aarch64, updated before assembly",
+  "kernel": "7.2.9-jon-ppp",
+  "kernel_modules": 906,
+  "image": {
+    "raw_image": "Fedora-44-Plasma-Mobile-PinePhone-Pro-eMMC-20261010.img",
+    "raw_bytes": 15032385536,
+    "raw_sha256": "05a1555883c75a55fcf1b486616078132ab9b3a9f3e968f2cc0c009c786f65ab",
+    "compressed_image": "Fedora-44-Plasma-Mobile-PinePhone-Pro-eMMC-20261010.img.xz",
+    "compressed_bytes": 3348179812,
+    "compressed_sha256": "a43eda1be8c9b67d032832cbf8ca64901bbdc27bcea360b2cd2b3918fe4cd634",
+    "bmap": "Fedora-44-Plasma-Mobile-PinePhone-Pro-eMMC-20261010.img.bmap",
+    "bmap_sha256": "c3b9b9bdcc38e6755010137507da5a5488b7da4f6332cb6bc1dd7640a3aa0cc3"
+  },
+  "parts": [
+    {
+      "name": "Fedora-44-Plasma-Mobile-PinePhone-Pro-eMMC-20261010.img.xz.part01",
+      "start": 0,
+      "bytes": 1992294400,
+      "sha256": "16837d01f60ee1d056f6c2e5f012214bf2034a91571c7722586e0a2b133920ec"
+    },
+    {
+      "name": "Fedora-44-Plasma-Mobile-PinePhone-Pro-eMMC-20261010.img.xz.part02",
+      "start": 1992294400,
+      "bytes": 1355885412,
+      "sha256": "4c8f51f2e4397470b2801ec243462b57ebe643aafb741e4539e8abffd352a269"
+    }
+  ],
+  "checks": {
+    "package_dependencies": true,
+    "kernel_dtb_and_modules": true,
+    "portable_initramfs": true,
+    "gpt_and_loader_placement": true,
+    "normal_headless_arm64_vm_boot": true,
+    "failed_systemd_units": 0,
+    "disposable_14_to_16_gib_growth": true,
+    "expanded_offline_filesystems": true,
+    "complete_compressed_image_decode": true,
+    "complete_physical_emmc_readback": true,
+    "physical_partition_table_matches": true
+  },
+  "physical_readback": {
+    "bytes": 15032385536,
+    "sha256": "05a1555883c75a55fcf1b486616078132ab9b3a9f3e968f2cc0c009c786f65ab",
+    "block_cache_invalidated": true
+  },
+  "physical_boot": {
+    "owner_reported_success": true,
+    "report_date": "2026-10-11",
+    "independent_remote_hardware_test": false
+  },
+  "hardware_functions_remaining": "Systematic touch, wireless, cellular, audio, cameras, charging and suspend tests are not established by this release.",
+  "reconstruction": "Source kit is provided; no bit-for-bit fresh rebuild is claimed."
+}

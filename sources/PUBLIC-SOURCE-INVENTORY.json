@@ -1,0 +1,1342 @@
+{
+  "schema_version": 1,
+  "format": "path, bytes, sha256; inventory excludes itself",
+  "files": [
+    {
+      "path": "PUBLIC-SOURCE-README.md",
+      "bytes": 6644,
+      "sha256": "f7101c6ac7a21cb556e05fab7c0dc09cb9036fc9d5379c0678f00f3aa2a98946",
+      "source": "new public source curation documentation"
+    },
+    {
+      "path": "bootloader-build/README.md",
+      "bytes": 5295,
+      "sha256": "dc5a30d733f4608c1e25ed35d78840cb2f90983e53c0ba4b74869c02f5a638e1",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "bootloader-build/build-bootloader.sh",
+      "bytes": 2593,
+      "sha256": "e683f50a4e07d5c84fcc29bdfb173f0f2ef5ed617af23b183a2a25bb8405388a",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "bootloader-build/source-manifest.json",
+      "bytes": 3056,
+      "sha256": "85fc87871de7a6f18770d383484831a85f3e2eebcbef190282bf0f5ce5b6e0a8",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "bootloader-build/sources/tfa-release-key-github.asc",
+      "bytes": 8598,
+      "sha256": "376b5e967b33832c31e89cb131147228aa209670e1be098c4f010d41b4f5a225",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "bootloader-build/sources/tfa-v2.15.0-signed-tag.txt",
+      "bytes": 1005,
+      "sha256": "d1a9f6ac216999da17b613dc9b765291522773d20de16011e622c013d4be6867",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "bootloader-build/sources/trusted-firmware-a-v2.15.0.tar.xz",
+      "bytes": 11521232,
+      "sha256": "436fbe5f3771edf84b77ca4efb8c2ed0211845e91d8538243b920f2327f82fdb",
+      "source": "pinned upstream source archive, relocated without changes"
+    },
+    {
+      "path": "bootloader-build/sources/u-boot-v2026.10-signed-tag.txt",
+      "bytes": 373,
+      "sha256": "d9cdfdc2e86b68cc5a8da79b8711ded26f1c62a13ffd7d6e3ac09fd9f470a228",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "bootloader-build/sources/u-boot-v2026.10.tar.xz",
+      "bytes": 37167644,
+      "sha256": "91931ff90002020b31f953e9c0526c4909765d4d4e0d280e40dbd2ddec232f47",
+      "source": "pinned upstream source archive, relocated without changes"
+    },
+    {
+      "path": "bootloader-build/sources/uboot-release-key.asc",
+      "bytes": 762,
+      "sha256": "712c4adf21115e5293acb316934ff76cc163d39caef9b822b97cbf6d16e47be3",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "bootloader-build/verify-bootloader.py",
+      "bytes": 5389,
+      "sha256": "6c124b7dab50d856ce6dcd6dacd41c871084f3086f64566be35b265e8b4d7a23",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/README-kernel.md",
+      "bytes": 2599,
+      "sha256": "8d133ec56ea5de8b2bdffd2c42c9fecd82be9923dbdc2ea51fa2f48d43929003",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/baseline-config-verification.json",
+      "bytes": 682,
+      "sha256": "bcd162cafae8be22ea156e3cd8a339a317397d70f7852b00f6cec9a57ecafcc9",
+      "source": "public upstream download verification"
+    },
+    {
+      "path": "kernel-build/build-kernel.sh",
+      "bytes": 2455,
+      "sha256": "d5a4287861d5cbd43c37b791a007879c6b501c3a92b872850c2e022632b66ac9",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/fedora-security.config",
+      "bytes": 1192,
+      "sha256": "d61d466f8dfd096dd6d7d2d422bfbb37964bec31c070ab7fbd006e641444e3e3",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/fetch_kernel_sources.py",
+      "bytes": 3203,
+      "sha256": "8e7b701b17aa98da1413d0a16455c618913b3818442353d8a54948efa778a68f",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/final-config-7.2.9-jon-ppp",
+      "bytes": 294230,
+      "sha256": "888eb1e305d0bf9b07452f3b8edb4a4204833c39eb36042dc1efc6b0dec8a71d",
+      "source": "exact configuration extracted from the released kernel SRPM payload"
+    },
+    {
+      "path": "kernel-build/finalize-kernel.sh",
+      "bytes": 983,
+      "sha256": "820fdaaaeda36b862114bc38c10d169ad4b5c9a70d96fc4f5d41079c601c400e",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/patch-rebase-notes.txt",
+      "bytes": 525,
+      "sha256": "144f8c0ee4833c65bd4541b53b82e625d57926db4c2f7450e303cc7789c52985",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/prepare-kernel-source.py",
+      "bytes": 1767,
+      "sha256": "58b1ab6b620167ecf5c6436e9042fe80754fb5c30913b65a89758fe52a628b04",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/source-manifest.json",
+      "bytes": 46511,
+      "sha256": "5d8c13e4b882ca50a66e4af469866944768ac8fbf3478d8ec4593769aa7618cc",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/0001-arm64-dts-rk3399-pinephone-pro-Keep-modem-regulators.patch",
+      "bytes": 1221,
+      "sha256": "a5637055dafb343085151fd0710c018126e23cd6718b79d22aa0cc12677a6514",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/0091-fedora-eg25-manager-dts.patch",
+      "bytes": 2225,
+      "sha256": "67b3aaaa1d4b83f311deb68039d73b3d6e1cf7dc4e3c3222325453bfc3b695fa",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/APKBUILD",
+      "bytes": 28900,
+      "sha256": "0677ea42d753fe961c9b2759539090ef36b01efd968301757f3174fbea69a8f0",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/bootloader-reference/default.nix",
+      "bytes": 1536,
+      "sha256": "aad24a6c0c82e33d3eb67f7894a94bb8a88b20a401ffe30843c13da67614c844",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/bootloader-reference/modules_hardware_rockchip_default.nix",
+      "bytes": 3754,
+      "sha256": "0da3f7cce2d48538d6acf7962759ed85093007649882d35bc8b4793435e9e43a",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/bootloader-reference/modules_tow-boot_config.nix",
+      "bytes": 5540,
+      "sha256": "7c07b16dba7a97ce0b8eeafe8e7d699619377bc0f7256e1535e9ef6148010cbc",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/bootloader-reference/modules_tow-boot_options.nix",
+      "bytes": 3678,
+      "sha256": "c896cd8a6f19c3006ebbf97e03f63e3033a4d60029640ac8a639c5606b33c48e",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/bootloader-reference/modules_tow-boot_src.nix",
+      "bytes": 3547,
+      "sha256": "5db32021b2d82366c80f3f6e0dfc4d7bbea5ab4b5f9289e424594882e362766e",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/bootloader-reference/modules_u-boot.nix",
+      "bytes": 1253,
+      "sha256": "b4c1a19f8894e171031d7a249af6b691afb6631d981aa5effd678af5ee48a2b8",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/bootloader-reference/release.nix",
+      "bytes": 970,
+      "sha256": "703d61bbe7b1593b42fbef2bb04995e687dd64588ce0c09a6120cd1a265ac3d8",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/config-pine64-pinephonepro.aarch64",
+      "bytes": 294674,
+      "sha256": "45b8866e865cfe4a073d313c8d388fe47a804e29e55deb8dfcf66ba2cfac7934",
+      "source": "recovered from the exact pinned manifest URL and SHA512 verified"
+    },
+    {
+      "path": "kernel-build/sources/gregkh-release-full-key.asc",
+      "bytes": 135482,
+      "sha256": "a34f6416aac40e24065d20a8c3f3fd0049947f4520c9cec1bb50331fe1897865",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/gregkh-release-key.asc",
+      "bytes": 3113,
+      "sha256": "abd27810314816128f5a246f111bed8b016e0dc32be35beebd307afe49c746d2",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/linux-7.2.9.tar.xz",
+      "bytes": 160392664,
+      "sha256": "b4c5dfbe51a364a6c7f03869200f88c8e1f77403539005f14b7fc6bc91b8d8ba",
+      "source": "pinned upstream source archive, relocated without changes"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0001-media-imx258-Add-i2c-supply.patch",
+      "bytes": 845,
+      "sha256": "918cf128edbdee2987f0cbe756a46fde0f2cbf74d7fdf7b0763ad1e6bd10e4d8",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0002-media-imx258-Add-reset-gpio.patch",
+      "bytes": 1918,
+      "sha256": "0f0b01980137e527c8364a309525f5139f35804b580678959f1ef84f1d5954c2",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0003-media-imx258-Drop-interface-speed-to-1224-mbps.patch",
+      "bytes": 2783,
+      "sha256": "2043d33261f301fa14892fd0d7a9f736a37dde5e9467bedd5ab56a0a02baae27",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0004-media-imx258-Add-debug-register-access.patch",
+      "bytes": 2031,
+      "sha256": "0a4b8199170cd2ebdbdbe1b7a5c58ef7ba24363fda3c04252e15a27132b99b12",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0005-ASoC-codecs-rt5640-Fix-output-mixer-input-channel-li.patch",
+      "bytes": 3475,
+      "sha256": "cabaf844f05ec773823bb347c96e35c7ee0960c857724cb1cb269a86956994d4",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0006-ASoC-codecs-rt5640-Fix-hpout-restore-when-lout-is-en.patch",
+      "bytes": 1088,
+      "sha256": "310aa94766d544d733a66b26f3a420a52f4084e72e99bd149b07cfec3fc34eed",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0007-ASoC-codecs-rt5640-Add-input-mixer-input-volume-cont.patch",
+      "bytes": 2209,
+      "sha256": "4146312e8b37629688b28ac6fed6e4d2d6fe1b7f385720de83acaac45ae6be6d",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0008-ASoC-codecs-rt5640-Allow-to-control-single-ended-dif.patch",
+      "bytes": 1206,
+      "sha256": "c2bbc813cf7489d74664eb6c2409ed22963280c50894845d766eb4748ab5a7ad",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0009-ASoC-codecs-rt5640-Keep-the-codec-enabled-when-idle.patch",
+      "bytes": 931,
+      "sha256": "f73336126210691f3e570084b82f64b72a83bc080014eb97b52fb995c22eb38a",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0010-ASoC-codecs-rt5640-Add-support-for-power-supplies.patch",
+      "bytes": 1547,
+      "sha256": "d17e2bcf46cbe9d2537d0c7bc4731500c6e8afe155448903a121a3c20d10f55f",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0011-ASoC-rockchip-Fix-doubling-of-playback-speed-after-s.patch",
+      "bytes": 1542,
+      "sha256": "88ee592781da2e4be9b5cbafc0a108bb62dd4bd80ba02cc6fad4f523ef70249a",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0012-power-supply-Add-support-for-USB_BC_ENABLED-and-USB_.patch",
+      "bytes": 1826,
+      "sha256": "3aff4e5744afdbcd1b7237689a963c684d4434d7181a41ef378c2724a0ab8b2b",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0013-mfd-rk8xx-Enable-rk808-clkout2-function.patch",
+      "bytes": 1709,
+      "sha256": "495f5c2bcce6801be98e68349c68fd466ff7ba6c9f73208aba155717deef274f",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0014-power-supply-rk818_battery-Add-battery-charger-drive.patch",
+      "bytes": 78327,
+      "sha256": "aeacda3988f2db4842ca444ac932de7d2cf617b7e482246960a97680d05ce081",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0015-power-supply-rk818_battery-Add-code-docs-for-the-HW-.patch",
+      "bytes": 9715,
+      "sha256": "2c4ec24e85551ff2bef74a5147a139eaff0a8cd74bd5ec5680a7c3454f588605",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0016-power-supply-rk818_battery-Don-t-override-configured.patch",
+      "bytes": 1560,
+      "sha256": "1b354d1a2c93fbdc6a7830736bdec9b09cca35f00b3c040bee23e1e46bbbc576",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0017-power-supply-rk818_battery-Scale-charge-current-by-t.patch",
+      "bytes": 2932,
+      "sha256": "13b5307da01471a6020e1d9513a57a56785077997fbf83d7cd86d0168743fe09",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0018-power-supply-rk818_battery-Scale-termination-current.patch",
+      "bytes": 3125,
+      "sha256": "1e64a75b80c442127d25a338ba56e5979f85db55f7212887338205a12c27517d",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0019-power-supply-rk818_battery-Compensate-for-IR-drop-wh.patch",
+      "bytes": 4386,
+      "sha256": "b600848af9b6bec9f26f995f9a7d67461548f9c75bd49a615a7f88b36f8dd480",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0020-power-supply-rk818_battery-Rework-the-low-voltage-mo.patch",
+      "bytes": 6062,
+      "sha256": "51b8a9e772ec259ad8871d54edfbb6a28c73ff5b995cfcde324fa6750c908de0",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0021-Revert-usb-typec-tcpm-unregister-existing-source-cap.patch",
+      "bytes": 1487,
+      "sha256": "5c2d0bb5647b6cbfdc5a573607d17e1adf90ac17a9e1ffa350b399ba4035eafc",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0022-usb-typec-altmodes-displayport-Respect-DP_CAP_RECEPT.patch",
+      "bytes": 4133,
+      "sha256": "df8278fc779946ce0f1a5b6c175eecb6eff543253775fdccfa1b7457a49743d8",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0023-usb-typec-tcpm-Unregister-altmodes-before-registerin.patch",
+      "bytes": 2046,
+      "sha256": "ad3970953026462de7b84ae2d08e40604a05f6aaa9b45d16e5ca4c121c013df7",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0024-usb-typec-tcpm-Fix-PD-devices-capabilities-registrat.patch",
+      "bytes": 3475,
+      "sha256": "173ac234cb04c303c81a572ba7f209ba1ccd2f10887932eb775b74b686d0c15e",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0025-usb-typec-fusb302-Slightly-increase-wait-time-for-BC.patch",
+      "bytes": 1242,
+      "sha256": "84ecd4040ddf3ed8b7728a616298e5b79129b0c5316d0f079c66bf0a3a034766",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0026-usb-typec-fusb302-Set-the-current-before-enabling-pu.patch",
+      "bytes": 1664,
+      "sha256": "c39ee835fb0c81a83167cc4e15a6bb2a931522ce82639875efc7f57167ad79e7",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0027-usb-typec-fusb302-Retry-reading-of-CC-pins-status-if.patch",
+      "bytes": 2162,
+      "sha256": "2a8094ce004263bdf903bbd50c32ef29803a0b9492f16fb00fa26eb7552be770",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0028-usb-typec-fusb302-Update-VBUS-state-even-if-VBUS-int.patch",
+      "bytes": 1618,
+      "sha256": "180fcde87f5abe310e2d106c6df1da8d2eeefeab9d87e61be31efabd13ea6ca2",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0029-usb-typec-fusb302-Add-OF-extcon-support.patch",
+      "bytes": 1527,
+      "sha256": "86c901474cb42025eed7bcb0f9139126c7f0a768cc1ad8f89e0769aa01bff525",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0030-usb-typec-fusb302-Fix-register-definitions.patch",
+      "bytes": 1882,
+      "sha256": "9480b2e532f8afe0fd0aadeb4f91fd8dfcf81135e4ef12c3d6d412bbaf85e0be",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0031-usb-typec-fusb302-Clear-interrupts-before-we-start-t.patch",
+      "bytes": 1319,
+      "sha256": "c15bfef86516c2aef309eb9bd5f2335f8e1937aa44a6866f2c3e24d76f4d9ea7",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0032-usb-typec-fusb302-Turn-off-VBUS-and-VCONN-on-shutdow.patch",
+      "bytes": 2006,
+      "sha256": "6c35c32f4704ed0ce81b928fa1e02dafd7f3fe22694f1a7f79509a649a732dd0",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0033-thermal-rockchip-Add-support-for-RV1106-SoC.patch",
+      "bytes": 5657,
+      "sha256": "0b50823ba3b31a01e7f62853ecd565ec83e2e513af7c331530bf74c1ed43c329",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0034-soc-rockchip-Add-support-for-power-monitoring-driver.patch",
+      "bytes": 4450,
+      "sha256": "33bfa715d9acefb0fb68f30bafc766832538deca2f3ae4845b94a2b941688aa3",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0035-rtc-rockchip-Add-support-for-RTC-present-in-RV1106-S.patch",
+      "bytes": 25725,
+      "sha256": "c7d097327d8d017e52fbacbfc73084671aef1abf84cdc00cecb720c8801a983c",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0036-thermal-rockchip-Add-support-for-RK3506.patch",
+      "bytes": 5704,
+      "sha256": "d95aef16e688d3bf19e55dd23859fd07a7f6b76c4bb7171367e7a3be75fad12c",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0037-arm64-dts-rockchip-rk3399-Disable-debug-nodes.patch",
+      "bytes": 1065,
+      "sha256": "3a9a1e71a5765b9df0795d9f4e1d07d9b79d1e0ce58a4f24fc4d5cf13aa28c05",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0038-arm64-dts-rockchip-rk3399-Add-reboot-mode-driver.patch",
+      "bytes": 1080,
+      "sha256": "143f76b5750827e2251c5f68e6d8534ca7c78aecda35db65fa1e5e63850cdb9a",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0039-arm64-dts-rockchip-rk3399-Power-cycle-the-USB3-PHY-o.patch",
+      "bytes": 1596,
+      "sha256": "5e5feb145aa7d8ad7ca32d118d007cf9810a0be162b17954817255c625bfc9bf",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0040-arm64-dts-rockchip-rk3399-Add-dmc_opp_table.patch",
+      "bytes": 1458,
+      "sha256": "4c65220e0c283222bcae652d6930bf34d7b3cc8af0dcebcb7d742f9848c059c6",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0041-arm64-dts-rockchip-rk3399-s-Add-DMC-table.patch",
+      "bytes": 1434,
+      "sha256": "54a5637da4e703f84617579b23c7922ce78004fd21883c6c3c4fe7b702bd6d1c",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0042-arm64-dts-rockchip-rk3399-Number-the-CDN-DP-ports.patch",
+      "bytes": 1618,
+      "sha256": "e6888c7036873d7d96683959cbe281956523f341c074a3d314a8b1b55f4d44d4",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0043-arm64-dts-rockchip-rk3399-pinephone-pro-Add-Type-C-p.patch",
+      "bytes": 6809,
+      "sha256": "1b2a42a67bb70fcd0f0de3bf8818fdeea260cc01764cb7a1caafbe5e1c07630a",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0044-arm64-dts-rockchip-rk3399-pinephone-pro-Add-internal.patch",
+      "bytes": 2087,
+      "sha256": "b881cd499155291475a1943e69d1fd2a1b2ee4f223f8e14dde95de7f878a586e",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0045-arm64-dts-rockchip-rk3399-pinephone-pro-Add-battery-.patch",
+      "bytes": 4112,
+      "sha256": "0606ec25469ba78f399fadb432efc0281187f484123e39ce4e27ed3dce7a69e0",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0046-arm64-dts-rockchip-rk3399-pinephone-pro-Add-sound-su.patch",
+      "bytes": 5289,
+      "sha256": "15337ea89d0e5e82be9fb206d533c200ebbed9d55e0543ad79c5ba3fb65d0b9d",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0047-arm64-dts-rockchip-rk3399-pinephone-pro-Add-modem-su.patch",
+      "bytes": 3864,
+      "sha256": "2aa7976d99d1b2ddf06e2f9b201cea7195c6dec6613f0c266bfcfc23d6312886",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0048-arm64-dts-rockchip-rk3399-pinephone-pro-Change-modem.patch",
+      "bytes": 918,
+      "sha256": "ef175bf8cd62de33e6b7357e0de2f72b4fc8a13b2b8da2cb9f540804bbb9e8de",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0049-arm64-dts-rockchip-rk3399-pinephone-pro-Add-light-pr.patch",
+      "bytes": 913,
+      "sha256": "147d993f5464b94e6952d25d7dcd5156721336578f8a5643d1218e468af6d107",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0050-arm64-dts-rockchip-rk3399-pinephone-pro-Add-I2C-supp.patch",
+      "bytes": 950,
+      "sha256": "d341e9aa76717e2d82470e268ed06ea8274b10bd7c4087dea52d9830b608cf05",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0051-arm64-dts-rockchip-rk3399-pinephone-pro-Add-magnetom.patch",
+      "bytes": 984,
+      "sha256": "d8e1046c4f3583d19e1b8a6498f16e843b7eb51956f4f767304c960589999e70",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0052-arm64-dts-rockchip-rk3399-pinephone-pro-Add-mount-ma.patch",
+      "bytes": 1426,
+      "sha256": "bab57881bc56c1cc10ad2b7c5419cb53a08b26084186e6e84e38ed78e6e9316d",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0053-arm64-dts-rockchip-rk3399-pinephone-pro-Enable-POGO-.patch",
+      "bytes": 1322,
+      "sha256": "dc4c913406c017a7c18bd1f9cad1ee251d49e5a19e6343eb21042be835ba430a",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0054-arm64-dts-rockchip-rk3399-pinephone-pro-Add-pinephon.patch",
+      "bytes": 4374,
+      "sha256": "11c189574d8d67106362a82a1e5ae14cf8f415d26693b719d0ad9b35d438cfbc",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0055-arm64-dts-rockchip-rk3399-pinephone-pro-Switch-LED-b.patch",
+      "bytes": 1587,
+      "sha256": "f45c1e14b049c5598ca44c9fcb2746e49481b972703696ef25c8f92d9b9ab7ee",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0056-arm64-dts-rockchip-rk3399-pinephone-pro-Pre-configur.patch",
+      "bytes": 2853,
+      "sha256": "4fc2385ac7ea2da09b5545180a906acff61bc13d7fe4d9ef650c666fc3ccb167",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0057-arm64-dts-rockchip-rk3399-pinephone-pro-Improve-SPI-.patch",
+      "bytes": 1046,
+      "sha256": "17145fabe79811fe085f1cbc834b4225b5a5b7f3662bcbf72ef1e1dacb260847",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0058-arm64-dts-rockchip-rk3399-pinephone-pro-Assign-power.patch",
+      "bytes": 1070,
+      "sha256": "e67d4d890caedc3254408c4225be488d4a2b23531c37548f583507d539cf54f8",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0059-arm64-dts-rockchip-rk3399-pinephone-pro-Add-camera-f.patch",
+      "bytes": 2455,
+      "sha256": "ebd8ce744e37afa332cc193b69c69a0dc5cc39e32416dd94646b3d114cae6455",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0060-arm64-dts-rockchip-rk3399-pinephone-pro-Disable-inte.patch",
+      "bytes": 1260,
+      "sha256": "745ec28ac0f7e076c647a826d5dd00b9184172ae451e25ad3243949777355b14",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0061-Revert-usb-dwc3-Abort-suspend-on-soft-disconnect-fai.patch",
+      "bytes": 2301,
+      "sha256": "6dee8edb2baf1cb0b435bcef435fb01a4024171ab30608f09b2e54b96bde63ac",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0062-phy-rockchip-inno-usb2-Add-support-for-RV1106-RV1103.patch",
+      "bytes": 5979,
+      "sha256": "da3434d0a88d007eb03ee9c1dfcf4ec229fa341092442f4331b5645378968cc6",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0063-phy-rockchip-inno-usb2-Add-support-for-RK3506.patch",
+      "bytes": 6158,
+      "sha256": "d6c0994c03cb30a9bd08d9f70647589dc0e69732927aeb60501bdabf067a3f38",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0064-phy-rockchip-inno-usb2-Add-PHY-tuning-for-rk3566-rk3.patch",
+      "bytes": 3011,
+      "sha256": "1e239a08b7e3f965386776fd66100a0f9cf017f04e2b849e29cb79486906890f",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0065-drm-rockchip-cdn-dp-Disable-CDN-DP-on-disconnect.patch",
+      "bytes": 946,
+      "sha256": "e2c34f29324ee471706ad7cf6047540a681952be2d526043911d14065f836144",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0066-phy-rockchip-inno-usb2-Decrease-delay-between-port-i.patch",
+      "bytes": 1538,
+      "sha256": "a56fa6e6903fd751300815e024f71841cd3c9065e8eff7084050dd0f99ce34e1",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0067-phy-rockchip-inno-usb2-More-robust-charger-detection.patch",
+      "bytes": 4044,
+      "sha256": "5b0daacc112e764bb80e34b9f151b07c9d00c967ce7bb84f69f819ff6222decd",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0068-usb-dwc3-Track-the-power-state-of-usb3_generic_phy.patch",
+      "bytes": 2393,
+      "sha256": "4788273f8bab380f2f9a63bfe80774824bcc9fad88c0577053d0db50b008679f",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0069-usb-dwc3-Always-disable-SUSPHY-when-entering-a-role.patch",
+      "bytes": 1775,
+      "sha256": "1eff76c149b62e84db02884dbbe00eab08b68b4bb143219babf8403b3d611e21",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0070-usb-dwc3-Track-cable-connection-state-separately-fro.patch",
+      "bytes": 5191,
+      "sha256": "486ed4bd4c0b5defe6cc1915953af08e1ba47885c11096ac9990ef106f9780e3",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0071-usb-dwc3-Power-cycle-USB3-PHY-on-role-connection-cha.patch",
+      "bytes": 10883,
+      "sha256": "f000e75840719a1e58f3c0e6c8c1da3ad6bc2dd5bcb85a96b65795cdac801ee8",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0072-usb-dwc3-Register-the-role-even-when-no-cable-is-con.patch",
+      "bytes": 2643,
+      "sha256": "d94130ecd5ef8c309fc48cb0eda2dc24c52180866306f94ca326d834fb4908a1",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0073-phy-rockchip-inno-usb2-Set-up-charger-detection-mode.patch",
+      "bytes": 7232,
+      "sha256": "bdfa33ed7779439bc3d9cb6d1a9f7316337e13f0dc2ff2162fb5b4654cadaaf5",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0074-usb-dwc3-Do-not-re-register-the-gadget-on-cable-even.patch",
+      "bytes": 4151,
+      "sha256": "fa9c0c32d7d7fb1a926f06af1bc07f27ff6e129649f04dca7e520bf7e6962a99",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0075-phy-rockchip-typec-Support-a-Type-C-orientation-swit.patch",
+      "bytes": 4376,
+      "sha256": "fc8ee1cea39a1126f555210533dc066836a363d9d5e53a4e3f4292c35b613e37",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0076-phy-rockchip-typec-Support-a-Type-C-mode-mux.patch",
+      "bytes": 6309,
+      "sha256": "324ff9439916f6dc1dfbc52456c0269ccc358a67591c1b9dff29b1b0578570ee",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0077-phy-rockchip-typec-Publish-the-DP-lane-count.patch",
+      "bytes": 3403,
+      "sha256": "020952cc0f3d66ebf510593049afb52858beb97f5fe44e4de84977609da38da7",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0078-drm-rockchip-cdn-dp-Support-ports-driven-by-a-Type-C.patch",
+      "bytes": 5896,
+      "sha256": "72e37d878b86efe13aae80f1a5bfc1d7b1d6d1460b64a18e86e964674ff5372e",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0079-phy-rockchip-inno-usb2-Learn-the-host-role-from-phy_.patch",
+      "bytes": 4959,
+      "sha256": "7c57c05ab75a3954bc417e13531e160e9eada2773318273e9e23fe242914b6e1",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0080-usb-dwc3-Tell-the-UDC-core-when-there-is-no-cable.patch",
+      "bytes": 4666,
+      "sha256": "1d012422c534f6839db8fa0a535f3323f3dfcc317d03a8a106cf647ef83aa85c",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0081-phy-rockchip-inno-usb2-Do-not-run-charger-detection-.patch",
+      "bytes": 4668,
+      "sha256": "20a8a97def73f59ef335cd884c96c278ae6992ae44e49f2be1a0486acb498404",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0082-usb-dwc3-Set-the-PHY-mode-before-starting-the-host.patch",
+      "bytes": 2771,
+      "sha256": "e9bde9c2cb465219f1fa77408f1ad3744d125b59cce353ecf97d26e7980cb63b",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0083-usb-dwc3-Do-not-connect-the-gadget-while-no-cable-is.patch",
+      "bytes": 2324,
+      "sha256": "58eeb0f5f976e818f4291ba2ab2831775e512d9d7141f20a68de71d80be085a8",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0084-phy-rockchip-inno-usb2-Power-the-PHY-up-before-the-h.patch",
+      "bytes": 2360,
+      "sha256": "d0d498a3116415d0b2c6f5bc5a84d321022e211e7648bf015be2f87d8e3c9d84",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0085-usb-dwc3-Require-MPS-aligned-OUT-buffers.patch",
+      "bytes": 1708,
+      "sha256": "913eb16a8dad97c6e2ed37577ffc5c5b18b813ec786993f5939b827071757d0f",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0086-usb-typec-displayport-Update-the-mux-before-signalli.patch",
+      "bytes": 4309,
+      "sha256": "e598072197d9327b0cc29182e17de089803a01ca66521652a226201ef300d805",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0087-mtd-spi-nor-gigadevice-Add-support-for-gd25lq128e.patch",
+      "bytes": 1160,
+      "sha256": "9ca3186f8736a863626775fd544fd0a58bd36be6718f576efea632e1dd9700c5",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0088-clk-rk3399-Export-SCLK_CIF_OUT_SRC-to-device-tree.patch",
+      "bytes": 1496,
+      "sha256": "3584379f9563864943b9318f2cfcd37dfd043647390c35146540829a18284b67",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/megi_patches/0089-clk-rockchip-rk3399-Don-t-allow-to-reparent-dclk_vop.patch",
+      "bytes": 1486,
+      "sha256": "0756aced0f6395eb09b96b401e005c6afd0af49badac62fe4a250dd847af9ee3",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/sources/rk3399-pinephone-pro.before-fedora-eg25.dts",
+      "bytes": 36426,
+      "sha256": "ad01401d1d61edc451eb75a11c35d9d251b360f1fccb290aa6e972b78ccd3aa9",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/toolchain-manifest.json",
+      "bytes": 4443,
+      "sha256": "cf88c695e5a8992e50e1233f2774b298133e6964b0bc86f4ca1dd761cfee466c",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "kernel-build/verify-kernel.py",
+      "bytes": 3602,
+      "sha256": "05fa2d074936a0c5b9bab2136ebf986af4f1280721b2f9332ff1f0512ff71181",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "notices/pmaports-LICENSE",
+      "bytes": 35141,
+      "sha256": "589ed823e9a84c56feb95ac58e7cf384626b9cbf4fda2a907bc36e103de1bad2",
+      "source": "pinned upstream repository license; scope caveat in source README"
+    },
+    {
+      "path": "notices/pmaports-LICENSE.provenance.json",
+      "bytes": 886,
+      "sha256": "0e1e56cd9b86f0f5668c82d52a7aeed69d1d98348e78b2e011c5e0b306fffd6d",
+      "source": "pinned upstream repository license; scope caveat in source README"
+    },
+    {
+      "path": "reference/local-image-repairs/repair-final-firstboot.py",
+      "bytes": 4734,
+      "sha256": "352786a85f407dff869ee1574abe2e59f3e157cb0929df28f5c462a648d8995f",
+      "source": "reference script used for final offline image repair"
+    },
+    {
+      "path": "reference/local-image-repairs/repair-final-grow-device.py",
+      "bytes": 2988,
+      "sha256": "629578f5699c2e8f8c1215294489a16557e85668eb1aee6056d2f50730311678",
+      "source": "reference script used for final offline image repair"
+    },
+    {
+      "path": "srpm-inputs.json",
+      "bytes": 5140,
+      "sha256": "c9c3e996c08e3578f08413663ef673d3586554e5c2617e01147522c3666a752e",
+      "source": "map of audited source RPM payloads to retained source inputs"
+    },
+    {
+      "path": "work/embed-verify-loader.py",
+      "bytes": 16777,
+      "sha256": "5fb05e6a3c839fb0f87473f4d8b0a7a5238065f5de915679d98843666df416d8",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/image_use_guard.py",
+      "bytes": 13029,
+      "sha256": "bbc9390d3947865e763b593b5ee3d3d8e39680caf1d2989949f1ab619bdad657",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/reassemble-final-image.py",
+      "bytes": 12805,
+      "sha256": "9272f18d5fc50ce4a28d07a42984d234f1ab2107d419c0c3e34c4b2ff3b07623",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/restore-fedora-raw.py",
+      "bytes": 4312,
+      "sha256": "fcbf7e3a3d56eeb64b16902ae0509edbc1bee64234ea849941b0907367fad5a0",
+      "source": "retained build recipe or source input",
+      "pre_sanitization_sha256": "d632df8ff1ed6511d81b3543827ce0650f9da107079079caa182ddd8653876a5",
+      "sanitizations": [
+        {
+          "kind": "laptop_workspace_placeholder",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "path": "work/share/010-refresh-fedora.sh",
+      "bytes": 1327,
+      "sha256": "bc215e52bf687ed7994b76fd6e30fc136b379f04faf3bea8272b21dd6750e635",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/015-build-prereqs.sh",
+      "bytes": 683,
+      "sha256": "97e8e36bd41980875b07f3c1c63bb76158d04904bbcc28e264ab533fb4fab053",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/029-inspect-device-providers.sh",
+      "bytes": 2612,
+      "sha256": "d60c4772a933c4974f5c9d79a23097baa49d5105c0a72d967de0bd5f126da865",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/040b-fix-runtime-and-finish.sh",
+      "bytes": 797,
+      "sha256": "0e3a423da1d369be266fc7a66462b69f675a2c7bbfbf180c7d14a07443d5da0e",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/042-export-source-initramfs.sh",
+      "bytes": 2128,
+      "sha256": "bd93ae432bba077b81366b3cbd6136d271b9b6433de845940b5888c61ab15efd",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/052-export-final-initramfs.sh",
+      "bytes": 1618,
+      "sha256": "113553be0ab0a48bc78352eaa89cd4a26b225ad628bc121bcc9ca03be3d74d51",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/bootstrap-build.sh",
+      "bytes": 4649,
+      "sha256": "183df3ed2b99c21cee78bc3e528238f959ac1a1319455bd1b6cae4790632f5eb",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/device-support-rebuild/SOURCES/atinout-0.9.1.tar.gz",
+      "bytes": 24117,
+      "sha256": "4d15c8288aca414e11cd304686b172696104c5e42bf776300311c005634854a2",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/device-support-rebuild/SOURCES/brcmfmac43455-sdio.AW-CM256SM.txt",
+      "bytes": 1475,
+      "sha256": "f50362207b7536521cadaa59bdc294a9ad946b149fbb6e332ec2a245c1f34fbf",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/device-support-rebuild/SOURCES/eg25-manager-2d8a19bfd7a4575489f1cb5adab042ad49ffec88.tar.gz",
+      "bytes": 58046,
+      "sha256": "806a13aad8a8cce6a8b86ec7925f2356f2aa81f33728a4ebfefe7399405e3b3c",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/device-support-rebuild/SOURCES/pinephonepro-device-support-10.tar.gz",
+      "bytes": 112577,
+      "sha256": "d477ec8396d18afef20c9c591440abbf82ed15f87449c815e8c4f2f5fe084df7",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/device-support-rebuild/SOURCES/pmaports-device/90-modem-eg25.rules",
+      "bytes": 685,
+      "sha256": "ac4c7b1ea23efbbb44b13dc0b95d34f37724db79f8483601ccd62aa853746ee6",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/device-support-rebuild/SOURCES/pmaports-device/APKBUILD",
+      "bytes": 4464,
+      "sha256": "6eeafb8f4e4b968d42cebe68c3d0dc4bfd968f3e71e1829c7fcb168f669944a2",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/device-support-rebuild/SOURCES/pmaports-device/deviceinfo",
+      "bytes": 955,
+      "sha256": "e2188d4220e377b8b44c7cfb2d8a7f2246cd8c7987c1108ec3ecd1dd1db2f71a",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/device-support-rebuild/SOURCES/pmaports-device/kernel-cmdline.conf",
+      "bytes": 175,
+      "sha256": "230cbce0d480ce51acb5b409650ec74771144550d0086ae89834b94cf86a16b4",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/device-support-rebuild/SOURCES/pmaports-device/modules-initfs",
+      "bytes": 68,
+      "sha256": "efb683be310237a7063ff52c30defe97b5a7db0ab7949a05675a20c0822a9487",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/device-support-rebuild/SOURCES/pmaports-device/setup-modem.sh",
+      "bytes": 569,
+      "sha256": "864ff7181388f9165ba737c0ce9d7891f8efc431b35cd29b15259334c77053af",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/device-support-rebuild/SOURCES/pmaports-device/source-manifest.json",
+      "bytes": 3105,
+      "sha256": "dc9f5c40e4738f7bd4604175b6941ec5f2eb461abd6c53e401401bb48a6bf8cf",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/device-support-rebuild/SOURCES/pmaports-device/ucm/HiFi.conf",
+      "bytes": 7568,
+      "sha256": "28f37a96d4810ea6110955a6b89b7a5d35a96c5d5a019e942d602cdf5a0374dd",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/device-support-rebuild/SOURCES/pmaports-device/ucm/PINE64-PinePhonePro-.conf",
+      "bytes": 345,
+      "sha256": "4e6b114adb83240df1fc96ae0a031705f975b7aceaafa5a932ebee47082473ea",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/device-support-rebuild/SOURCES/pmaports-device/ucm/VoiceCall.conf",
+      "bytes": 7477,
+      "sha256": "e14be6b8c7c8f613092e204bd157c11fff49e6b068f160615e4e0e168b6c9373",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/device-support-rebuild/SOURCES/raspberrypi-bluez-firmware/COPYING",
+      "bytes": 18011,
+      "sha256": "e6d6a009505e345fe949e1310334fcb0747f28dae2856759de102ab66b722cb4",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/device-support-rebuild/SOURCES/raspberrypi-bluez-firmware/README",
+      "bytes": 835,
+      "sha256": "b90ba478e213c4776ee5514f6c179454de132260a7f48439288a515ec2537ef0",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/device-support-rebuild/SOURCES/raspberrypi-bluez-firmware/broadcom/BCM-LEGAL.txt",
+      "bytes": 115,
+      "sha256": "092aaac7a0743f6e98ef224dfd68cac7554aa267581121fadcace8599b7d29dd",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/device-support-rebuild/SOURCES/raspberrypi-bluez-firmware/broadcom/BCM4345C0.hcd",
+      "bytes": 63806,
+      "sha256": "51c45e77ddad91a19e96dc8fb75295b2087c279940df2634b23baf71b6dea42c",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/device-support-rebuild/SOURCES/raspberrypi-bluez-firmware/broadcom/BCM4345C5.hcd",
+      "bytes": 55676,
+      "sha256": "fb9f4ec2df5301bd35f416384e103c012c5983024c49aa72fbbaf90177512caa",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/device-support-rebuild/SOURCES/raspberrypi-bluez-firmware/debian/copyright",
+      "bytes": 3235,
+      "sha256": "611b9f690d41e3cb200d66b1c9c5b23172be40d1f6ca4e59efb2b8232c476ad3",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/device-support-rebuild/SPECS/atinout-pinephonepro.spec",
+      "bytes": 1485,
+      "sha256": "b7a09da4e4d19975ef4c7c247d447daa64c4ee570c439b222571e05c26e85277",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/device-support-rebuild/SPECS/eg25-manager.spec",
+      "bytes": 1873,
+      "sha256": "62489a15f5e5abd4d9e71a4f84edefc7f1b1e70f34d8c88a238cb6bd9b8e715e",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/device-support-rebuild/SPECS/pinephonepro-device-support.spec",
+      "bytes": 3122,
+      "sha256": "1b82b3442ab00ad8594d9649f5eb7087e7b8fe7d79c3890dc7a6ca6bf41439ec",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/device-support-rebuild/build-install-device-support.sh",
+      "bytes": 8892,
+      "sha256": "db0b2f7481ebb60980ef88dc0d75352ecfc1154bb446ef9911899152034adcda",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/device-support-rebuild/prepare-rpmbuild.py",
+      "bytes": 2942,
+      "sha256": "ef8ed5795fb53153a9ca5001aac5eae6bafe44777520ff2670604bc53c8137bd",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/device-support-rebuild/rpmbuild-inputs.json",
+      "bytes": 1314,
+      "sha256": "265ce556bf5121dabaa30ddf9c4fa8e954dd81be437387239c3d4835db51128c",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/essential-runtime-packages.txt",
+      "bytes": 488,
+      "sha256": "0c64709a733d0c6dcccfcacd257bb406765f0b4907d3aa40958f9ed2c5b71e43",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/fedora-kernel-packaging/README.md",
+      "bytes": 3300,
+      "sha256": "b1e1f8c498474f24a9361bf793d98f2f533f597c0a11138c048b33f4145ad72e",
+      "source": "retained build recipe or source input",
+      "pre_sanitization_sha256": "33f7d6b62c49d64dd6aa6adaa2d3d648a251b182a82a2ddf2f8c917bc019fbc5",
+      "sanitizations": [
+        {
+          "kind": "cloud_workspace_placeholder",
+          "occurrences": 2
+        }
+      ]
+    },
+    {
+      "path": "work/share/fedora-kernel-packaging/SOURCES/GPL-2.0",
+      "bytes": 18600,
+      "sha256": "8780e78a1a737e127f25a65f6d95269bffd36158dc261114de7859b490bfc5aa",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/fedora-kernel-packaging/SOURCES/README.md",
+      "bytes": 2929,
+      "sha256": "ce275d54ae9c4f113a236f6af57db88a8f2b452a3084207b352b36ba866efa29",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/fedora-kernel-packaging/SOURCES/boot.conf",
+      "bytes": 423,
+      "sha256": "1f7ccbf0b6327689352a14834c592583c4d398021bac8ad870a08bbcfa1be7da",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/fedora-kernel-packaging/SOURCES/kernel-pinephone-pro-7.2.9.tar.gz",
+      "bytes": 27635674,
+      "sha256": "7e013e8886808891ebf1ec704284b1b530315b3f303da8ff2c6a42dfc39096c4",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/fedora-kernel-packaging/SOURCES/pinephone-pro-initramfs-verify",
+      "bytes": 15264,
+      "sha256": "df3faf733f7df46fa4b9b364f7df8f4d314678d23d4cfef73fc131f0a7f94551",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/fedora-kernel-packaging/SOURCES/pinephone-pro-kernel-update",
+      "bytes": 9945,
+      "sha256": "6ec9af0d5864ad83188ebbfba95b349fd69d4468c46b326de06ef875bd654dca",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/fedora-kernel-packaging/SPECS/kernel-pinephone-pro.spec",
+      "bytes": 8127,
+      "sha256": "867b9bb20cb1bbcc20d517b2b2448a2ee7f8ff42c0ee5cf006c753c9c72f5dee",
+      "source": "retained build recipe or source input",
+      "pre_sanitization_sha256": "1f056f55980a56a57b988c07fc362e0f0e1ad25c99d85277cc2252fa9670de99",
+      "sanitizations": [
+        {
+          "kind": "maintainer_changelog_noreply",
+          "occurrences": 2
+        }
+      ]
+    },
+    {
+      "path": "work/share/fedora-kernel-packaging/SPECS/pinephone-pro-kernel-tools.spec",
+      "bytes": 2310,
+      "sha256": "0f314b4b071959a6623c7d5492b321ae2606a594907ca4885e8c440845ade7c7",
+      "source": "retained build recipe or source input",
+      "pre_sanitization_sha256": "0102f651f8592b15c5ba856cee692db6c0520157343156fcd561f37c2b347440",
+      "sanitizations": [
+        {
+          "kind": "maintainer_changelog_noreply",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "path": "work/share/fedora-kernel-packaging/prepare-sources.py",
+      "bytes": 9016,
+      "sha256": "8da5ea65ece21dfab97be32a8361f48e1174b0bf7d840c67a04f15651923e707",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/fedora-kernel-packaging/prepared-sources.json",
+      "bytes": 280,
+      "sha256": "e2df562af26c7f2fea016ec7ff1b1d4023d3adba22e402117b4a5c96250424e7",
+      "source": "retained build recipe or source input",
+      "pre_sanitization_sha256": "1856787d3da4a37bdd1e71ed0880270bd98c3827e39a97a969c10f507e75e0ca",
+      "sanitizations": [
+        {
+          "kind": "cloud_workspace_placeholder",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "path": "work/share/guest-rebuild-preparation/020-compiler-smoke.sh",
+      "bytes": 2396,
+      "sha256": "a6bf3cf6f77d2d833db1ba8a6345714b8dfa5f036dea945e4c8099c267c71354",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/guest-rebuild-preparation/025-build-kernel-rpms.sh",
+      "bytes": 5967,
+      "sha256": "2ef19d6ab28e90e90f8431999fc5c5aec33adb67fa87dbf806615d134172996a",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/guest-rebuild-preparation/035-install-verify-kernel.sh",
+      "bytes": 4644,
+      "sha256": "4d398d4743cfc1df83709a30fd21de70e9ad42613a202ea6a8b904343c5373d6",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/guest-rebuild-preparation/040-finish-phone.sh",
+      "bytes": 5585,
+      "sha256": "a5a4256b5a91e7d41019f5f6fbcb6a29730f30f35274e8c4901452df102d51a9",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/guest-rebuild-preparation/dracut-build-logging.sh",
+      "bytes": 3625,
+      "sha256": "2f0bf2b433c56ee871c459059cc4f5bf4b69e41c21215db934bcc3333e143a9c",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/guest-rebuild-preparation/finish-inputs.json",
+      "bytes": 710,
+      "sha256": "fe85d38dd3b75de03bc49a658092c69e7270bcea8733b28ba0597b05c0fe4ff7",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/guest-rebuild-preparation/rebuild-inputs.json",
+      "bytes": 1663,
+      "sha256": "9a4bf78354576aa84da5ea8f05f6f7b530af15c8ed46177d771a2197deac390d",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/guest-rebuild-preparation/verify-installed-kernel.py",
+      "bytes": 10600,
+      "sha256": "bcbd200085727d8b244184104f2fc48b98687c7284d3ea85cff3e383e0c5c99d",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/guest-rebuild-preparation/write-fresh-package-state.py",
+      "bytes": 11920,
+      "sha256": "e67cb4f664c9cb0d32703a86f7faeb0da6b6add5a1955cf8e43bc98881c70b21",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/image-assembly/README.md",
+      "bytes": 5808,
+      "sha256": "b04df62ed2a09c3d28b9a59c18a90e77017ce4345ef0e3832a3d5d546addd072",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/image-assembly/assemble-fedora-ppp.sh",
+      "bytes": 17752,
+      "sha256": "5a534b07bce96088be184e991d6b96cff5a1de2cf22d19155c870c15ee19e592",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/image-assembly/pinephone-pro-grow-root",
+      "bytes": 5181,
+      "sha256": "cdf23976a24211198f5d4b3db74d45e1893b38c0d3e2e8d77a7d85f84b8a8218",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/image-assembly/pinephone-pro-grow-root.service",
+      "bytes": 398,
+      "sha256": "7178670889aa64174c1644d639bc7b4d79bad401c004d1c7188b36d604fd33f6",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/image-assembly/test-virtual-root-growth.sh",
+      "bytes": 8292,
+      "sha256": "f30fb9145a05f11c11c8f0333219ed19614529c8adace8f10cd4488a25c3bd30",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/image-assembly/verify-fedora-ppp-vm.sh",
+      "bytes": 10167,
+      "sha256": "b166bf478e0946e9ec24f3bfb9b4a352ab39c3ef20b1305167a37915a7654a47",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/native-fixtures.sh",
+      "bytes": 4542,
+      "sha256": "b89af4205b85767e5bea080e0a0af59eed396ddb4f54fb5e2a2715c7b3be3182",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/reexec-build-shell.sh",
+      "bytes": 608,
+      "sha256": "5a28b88945efaeea124aebf02d25ff0fbe6de19fd90c4b17fb1f8699f4ffcedc",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/request-validation-shutdown.sh",
+      "bytes": 638,
+      "sha256": "01b15dff49b7edbc36cc261834d71639c966e117c90362d1e955532b9d7475f7",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/shutdown-build-vm-recovered.sh",
+      "bytes": 706,
+      "sha256": "ba01ff1a4c71b873828ab4fc16c2f4acec32f8f49c87f23ebbff681ae69b77eb",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/shutdown-build-vm.sh",
+      "bytes": 409,
+      "sha256": "2b8a6b8ff188e47a827b974ff74f63dfe5913a98584c8d65aa8cbfeff0d02f35",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/shutdown-offline-validation.sh",
+      "bytes": 2222,
+      "sha256": "5e89689bb95d5e77b875884a33c9fc35ffe1f2a0e02b0d56838c46b42fc0c102",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/share/verify-firstboot.sh",
+      "bytes": 1065,
+      "sha256": "a1cff5cba3e5cb84e7501fb22d9d7188fef06c5ed7835d8e6f36fadab166a975",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/vm-resume/control-build-vm.py",
+      "bytes": 11338,
+      "sha256": "fc31f38533db6b06fe12f5d6ef295094cc512af54dace51637075cf22df18f6b",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/vm-resume/receipts.py",
+      "bytes": 1506,
+      "sha256": "f0313504fbc5bce6e19198fd8873bbb031e52e4c49ab0d3f156efbdaf325abc9",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/vm-resume/vm_launcher.py",
+      "bytes": 10067,
+      "sha256": "d8f22b4fd1a99ce8a76a1efc786ed50cd8a7d2e146969fb292a4f0bd5b93b994",
+      "source": "retained build recipe or source input",
+      "pre_sanitization_sha256": "e6a8bf8b0d3903b4b19be4d6f1a758a1ca053385059b3e4af0e795dde7c09b27",
+      "sanitizations": [
+        {
+          "kind": "laptop_workspace_placeholder",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "path": "work/vm-validation/control-validation-vm.py",
+      "bytes": 22329,
+      "sha256": "8fdab1be5ef88a89f2d1b926ea2a91eaf97cebc488185890f2904e709636dbc2",
+      "source": "retained build recipe or source input",
+      "pre_sanitization_sha256": "9072c4f11b3c5b37ff0a31634738c211051077be40b8699abdd2df048acccc52",
+      "sanitizations": [
+        {
+          "kind": "laptop_workspace_placeholder",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "path": "work/vm-validation/launch-offline-growth-vm.py",
+      "bytes": 11836,
+      "sha256": "ea1a72595fefa13c33a3c51667732b743f40d23e7210f4bfc9034e12b5fee296",
+      "source": "retained build recipe or source input",
+      "pre_sanitization_sha256": "46424d283ed9a6e41ae8003c76caebf132c179364b4ad71d77e9b63a106b6c20",
+      "sanitizations": [
+        {
+          "kind": "laptop_workspace_placeholder",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "path": "work/vm-validation/launch-verify-vm.py",
+      "bytes": 10237,
+      "sha256": "b719911383306eab4e3faa4eee965110602d77a7e52a7805e35132fc23de65db",
+      "source": "retained build recipe or source input",
+      "pre_sanitization_sha256": "b8784836b22266b60bbe019cd0e2ce7e2c82cf16c1916339b09a833f63795c2a",
+      "sanitizations": [
+        {
+          "kind": "laptop_workspace_placeholder",
+          "occurrences": 1
+        }
+      ]
+    },
+    {
+      "path": "work/vm-validation/receipts.py",
+      "bytes": 1506,
+      "sha256": "f0313504fbc5bce6e19198fd8873bbb031e52e4c49ab0d3f156efbdaf325abc9",
+      "source": "retained build recipe or source input"
+    },
+    {
+      "path": "work/vm-validation/source-interface.json",
+      "bytes": 1932,
+      "sha256": "ec2f227f6b9a8eaddfc614d424aa25ac4d608e417e79656eb8346b1a8141f6c6",
+      "source": "retained build recipe or source input",
+      "pre_sanitization_sha256": "38c6e7116c2effab9455b77bf180c581afa7f642da4347f3fb50cab9a11cd9c0",
+      "sanitizations": [
+        {
+          "kind": "laptop_workspace_placeholder",
+          "occurrences": 2
+        }
+      ]
+    }
+  ]
+}

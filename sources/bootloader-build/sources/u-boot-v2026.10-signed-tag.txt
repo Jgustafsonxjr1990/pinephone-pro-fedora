@@ -1,0 +1,13 @@
+object 5508406582f6f7120dce0c4b3059819a41788db2
+type commit
+tag v2026.10
+tagger Tom Rini <trini@konsulko.com> 1791236254 -0600
+
+Prepare v2026.10
+-----BEGIN PGP SIGNATURE-----
+
+iHUEABYKAB0WIQTzzqh0PWDgGS+bTHor4qD1Cr/kCgUCasQYngAKCRAr4qD1Cr/k
+Cgr6AP43f+z0S6dDBzsU7yT29M+8N+b3NzkqaQB4cdxkOZr6cwD/e8SVx+hroUjy
++nLTnOvL6KznlzFZUdD4CYpaq7TUCwA=
+=xZ+A
+-----END PGP SIGNATURE-----

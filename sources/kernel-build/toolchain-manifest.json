@@ -1,0 +1,109 @@
+{
+  "extracted_packages": [
+    {
+      "filename": "bc_1.07.1-3ubuntu4_amd64.deb",
+      "sha256": "cb85d5929476088533b3c5e1db2de5ab4593a69fa54243710f762197dbaea60d"
+    },
+    {
+      "filename": "binutils-aarch64-linux-gnu_2.42-4ubuntu2.10_amd64.deb",
+      "sha256": "6bb25a05c50681e240b453f6572d8066f2358dee984d0ff1dbcd08852642adf2"
+    },
+    {
+      "filename": "bison_2%3a3.8.2+dfsg-1build2_amd64.deb",
+      "sha256": "18f487c400da3e968a44ecb3783a443641bcd14e2b080ed9ed1167f4aa2c1612"
+    },
+    {
+      "filename": "cpp-12-aarch64-linux-gnu_12.4.0-2ubuntu1~24.04.1cross1_amd64.deb",
+      "sha256": "5e568094c1cab95790a2caca0a44128c236a458e27d92bc02404afad2c8d109f"
+    },
+    {
+      "filename": "flex_2.6.4-8.2build1_amd64.deb",
+      "sha256": "c5604f55827b50e3f568b4731b7799f86b147454c867be02bc141d9d8ce561ff"
+    },
+    {
+      "filename": "gcc-12-aarch64-linux-gnu_12.4.0-2ubuntu1~24.04.1cross1_amd64.deb",
+      "sha256": "3c008f391d1dfad6db008043e08fec2f45069bb2c97d125cca110222f85eef46"
+    },
+    {
+      "filename": "gcc-12-cross-base_12.4.0-2ubuntu1~24.04.1cross1_all.deb",
+      "sha256": "a951c55e0ecc4aa9619a9ec56eb13feaf36dd6e42577b19ff020b50959ac45ac"
+    },
+    {
+      "filename": "kmod_31+20240202-2ubuntu7.2_amd64.deb",
+      "sha256": "687693dfad23c96570d96a1c7cc1b8709d31a93f82ac765a11b2bd9130f1dfae"
+    },
+    {
+      "filename": "libasan8-arm64-cross_14.2.0-4ubuntu2~24.04.1cross1_all.deb",
+      "sha256": "7e65c44cda6a9c3be17f5042fe1f0e403d9c959797f3d876345a9c66310724d3"
+    },
+    {
+      "filename": "libatomic1-arm64-cross_14.2.0-4ubuntu2~24.04.1cross1_all.deb",
+      "sha256": "1c24a0d6dfcd52492797f8f534a5d696bc70a58e214d16796ec823b417c36ac3"
+    },
+    {
+      "filename": "libelf-dev_0.190-1.1ubuntu0.1_amd64.deb",
+      "sha256": "81affb95c29f7323f2ae24386aaa1f61d311578e3e27c5f78ef7b7d55cd3cf49"
+    },
+    {
+      "filename": "libfl-dev_2.6.4-8.2build1_amd64.deb",
+      "sha256": "5d3438b7a8bd82c8e5859dbf2fefd7523a204eff8ed5f5736fe732047e938be0"
+    },
+    {
+      "filename": "libfl2_2.6.4-8.2build1_amd64.deb",
+      "sha256": "098db71e672ded6e8194eec7132a2ca31dee49022848c7b0f77ce912d99cb445"
+    },
+    {
+      "filename": "libgcc-12-dev-arm64-cross_12.4.0-2ubuntu1~24.04.1cross1_all.deb",
+      "sha256": "fae159d5cd25f9b985a994c4d97c3e6b9b7089ef76faf8b3855d12374e38ec25"
+    },
+    {
+      "filename": "libgcc-s1-arm64-cross_14.2.0-4ubuntu2~24.04.1cross1_all.deb",
+      "sha256": "be13b35e1c56c4158817e668f442a363db6f4e13b2ffed1ef6cf91df9961e35d"
+    },
+    {
+      "filename": "libgomp1-arm64-cross_14.2.0-4ubuntu2~24.04.1cross1_all.deb",
+      "sha256": "8186dd15e27cb872f1d4b963c5adc68094e31b20f60a72211492424e0d3512a1"
+    },
+    {
+      "filename": "liblsan0-arm64-cross_14.2.0-4ubuntu2~24.04.1cross1_all.deb",
+      "sha256": "b5fd148de67b79fd8308b51270f5cc6eef893d47aaaace297bf4680eeae96e32"
+    },
+    {
+      "filename": "libpkgconf3_1.8.1-2build1_amd64.deb",
+      "sha256": "fc3a57e8f931ec06cb7c51acc56878f1fec247ff02a7adcab26905c2faeb2792"
+    },
+    {
+      "filename": "libssl-dev_3.0.13-0ubuntu3.15_amd64.deb",
+      "sha256": "cefc6371d90d953a4cbb35d72d871f057e4b961a3107186f67fe96a88040cdb8"
+    },
+    {
+      "filename": "libstdc++6-arm64-cross_14.2.0-4ubuntu2~24.04.1cross1_all.deb",
+      "sha256": "5b9168ad31befddb46fe1b6af88aa90bec0fc63c0abfb4f9c68c2cfcc2acda95"
+    },
+    {
+      "filename": "libtsan2-arm64-cross_14.2.0-4ubuntu2~24.04.1cross1_all.deb",
+      "sha256": "9a67551170ab1305e6ed4797f90bd0af5a696b0799b43aeac09e4ff11bfced67"
+    },
+    {
+      "filename": "libubsan1-arm64-cross_14.2.0-4ubuntu2~24.04.1cross1_all.deb",
+      "sha256": "1a5b3c11901ba5a65b8cadec57ca1af1b567df5bbe7d88d36b2da774fb939a48"
+    },
+    {
+      "filename": "m4_1.4.19-4build1_amd64.deb",
+      "sha256": "30ea715845a1863abd55d11e47ab91513130bf347852d4cdeae69e9d98fa795c"
+    },
+    {
+      "filename": "pkg-config_1.8.1-2build1_amd64.deb",
+      "sha256": "16bda455d9216da31ad55d72df5a7380cb9d5ac32a2393941cab262a4e5b526f"
+    },
+    {
+      "filename": "pkgconf-bin_1.8.1-2build1_amd64.deb",
+      "sha256": "7a812f05ee1610154b433e2ad54f6e4163fcbb306b9fb31afe959afb2e5e1545"
+    },
+    {
+      "filename": "zstd_1.5.5+dfsg2-2build1.1_amd64.deb",
+      "sha256": "d7667f83e3a2caeaaecaca464d542ee6ccf537259a479622796c84afc96d6032"
+    }
+  ],
+  "install_method": "dpkg-deb --fsys-tarfile with extraction into private tools directory; host package installation not used"
+}

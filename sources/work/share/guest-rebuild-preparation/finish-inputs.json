@@ -1,0 +1,19 @@
+{
+  "files": {
+    "/build/essential-runtime-packages.txt": {
+      "sha256": "0c64709a733d0c6dcccfcacd257bb406765f0b4907d3aa40958f9ed2c5b71e43",
+      "size_bytes": 488
+    },
+    "/build/image-assembly/pinephone-pro-grow-root": {
+      "sha256": "489c62784ce1a5e948ba3df66f4c948eb164e4c818dff8f1e4dddb71080b38dd",
+      "size_bytes": 5180
+    },
+    "/build/image-assembly/pinephone-pro-grow-root.service": {
+      "sha256": "7178670889aa64174c1644d639bc7b4d79bad401c004d1c7188b36d604fd33f6",
+      "size_bytes": 398
+    }
+  },
+  "runtime_list_origin": "Reconstructed from retained canonical VM verifier; lost original not recovered",
+  "schema_version": 1,
+  "status": "source_only_prepared_not_executed"
+}

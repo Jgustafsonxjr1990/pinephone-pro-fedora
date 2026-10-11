@@ -1,0 +1,17 @@
+{
+  "repository": "https://gitlab.postmarketos.org/postmarketOS/pmaports",
+  "commit": "4b5d202c15567da82a2bcb2d580ec0845e63c1d5",
+  "upstream_path": "LICENSE",
+  "metadata_url": "https://gitlab.postmarketos.org/api/v4/projects/postmarketOS%2Fpmaports/repository/files/LICENSE?ref=4b5d202c15567da82a2bcb2d580ec0845e63c1d5",
+  "raw_url": "https://gitlab.postmarketos.org/postmarketOS/pmaports/-/raw/4b5d202c15567da82a2bcb2d580ec0845e63c1d5/LICENSE",
+  "retrieved_utc": "2026-10-11T07:49:24.264895+00:00",
+  "bytes": 35141,
+  "sha256": "589ed823e9a84c56feb95ac58e7cf384626b9cbf4fda2a907bc36e103de1bad2",
+  "git_blob_sha1": "9cecc1d4669ee8af2ca727a5d8cde10cd8b2d7cc",
+  "verified": [
+    "HTTPS metadata bound to exact commit",
+    "base64 decoded bytes match metadata length and SHA256",
+    "Git blob SHA1 matches pinned root tree entry"
+  ],
+  "local_exact_bytes": "pmaports-LICENSE"
+}

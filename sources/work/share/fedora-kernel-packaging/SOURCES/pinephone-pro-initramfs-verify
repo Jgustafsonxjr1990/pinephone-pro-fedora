@@ -1,0 +1,338 @@
+#!/usr/bin/python3
+# SPDX-License-Identifier: GPL-2.0-only
+"""Fresh portable Fedora dracut gzip/newc audit; never extracts archive files.
+
+This is a new implementation, not the missing historical helper. Public audits
+contain only fixed policy names, metadata and hashes, never archived contents.
+"""
+import argparse
+import hashlib
+import json
+import os
+from pathlib import Path
+import stat
+import sys
+import zlib
+
+POLICY = "exact-fedora108-generic-btrfs-only-fresh-rebuild-v1"
+GENERIC_BTRFS = b" rd.driver.pre=btrfs\n"  # Exact 21 bytes, including first space.
+HINT = "etc/cmdline.d/00-btrfs.conf"
+PROTECTED_FILES = frozenset((
+    "etc/fstab", "etc/fstab.sys", "etc/crypttab", "etc/machine-id",
+    "etc/hostname", "etc/hostid", "etc/machine-info", "etc/cmdline",
+    "etc/kernel/cmdline", "var/lib/dbus/machine-id",
+))
+PROTECTED_TREE = "etc/cmdline.d"
+MAX_ARCHIVE = 256 * 1024 * 1024
+MAX_EXPANDED = 512 * 1024 * 1024
+MAX_MEMBERS = 100000
+MAX_NAME = 4096
+MAX_AUDIT_ENTRIES = 32
+MAX_ZERO_PADDING = 1024 * 1024
+
+
+class Rejected(Exception):
+    pass
+
+
+def require(condition, reason):
+    if not condition:
+        raise Rejected(reason)
+
+
+def is_protected(name):
+    return name in PROTECTED_FILES or name.startswith(PROTECTED_TREE + "/")
+
+
+def touches_protected(name):
+    """Also forbid aliases to directories which contain protected fields."""
+    return (not name or is_protected(name) or name == PROTECTED_TREE or
+            any(field.startswith(name + "/") for field in PROTECTED_FILES) or
+            PROTECTED_TREE.startswith(name + "/"))
+
+
+def canonical_name(raw, mode):
+    require(raw.endswith(b"\0") and b"\0" not in raw[:-1], "invalid_cpio_name")
+    try:
+        name = raw[:-1].decode("utf-8")
+    except UnicodeDecodeError:
+        raise Rejected("non_utf8_cpio_name") from None
+    require(not name.startswith("/"), "absolute_cpio_name")
+    while name.startswith("./"):
+        name = name[2:]
+    if name == ".":
+        require(stat.S_ISDIR(mode), "invalid_root_directory_entry")
+        return name
+    if name.endswith("/"):
+        require(stat.S_ISDIR(mode), "non_directory_trailing_slash")
+        name = name[:-1]
+    require(bool(name) and all(piece not in ("", ".", "..")
+                              for piece in name.split("/")), "unsafe_cpio_name")
+    require(len(name.split("/")) <= 128, "cpio_path_depth_limit")
+    require(not any(ord(c) < 32 or ord(c) == 127 for c in name), "control_cpio_name")
+    return name
+
+
+def link_target(content):
+    require(0 < len(content) <= MAX_NAME and b"\0" not in content, "invalid_symlink_target")
+    try:
+        target = bytes(content).decode("utf-8")
+    except UnicodeDecodeError:
+        raise Rejected("non_utf8_symlink_target") from None
+    require(not any(ord(c) < 32 or ord(c) == 127 for c in target), "control_symlink_target")
+    require(len(target.split("/")) <= 128, "symlink_target_component_limit")
+    return target
+
+
+def zero_padding(data, position):
+    start = position
+    while position < len(data) and data[position] == 0:
+        position += 1
+        require(position - start <= MAX_ZERO_PADDING, "excessive_zero_padding")
+    return position
+
+
+class Audit:
+    def __init__(self, max_expanded):
+        self.max_expanded = max_expanded
+        self.names = {}
+        self.required_directories = set()
+        self.inodes = {}
+        self.symlinks = {}
+        self.containers = 0
+        self.members = 0
+        self.expanded = 0
+        self.gzip_streams = 0
+        self.protected = []
+        self.init_present = False
+        self.init_container = None
+
+    def member(self, container, name, fields, content):
+        ino, mode, uid, gid, nlink, mtime, size, devmajor, devminor, rmaj, rmin, namesize, check = fields
+        self.members += 1
+        require(self.members <= MAX_MEMBERS, "member_limit")
+        require(nlink >= 1, "invalid_link_count")
+        kind = stat.S_IFMT(mode)
+        require(kind in (stat.S_IFREG, stat.S_IFDIR, stat.S_IFLNK,
+                         stat.S_IFCHR, stat.S_IFBLK, stat.S_IFIFO), "unsupported_cpio_type")
+        if kind not in (stat.S_IFREG, stat.S_IFLNK):
+            require(size == 0, "non_file_payload")
+        previous = self.names.get(name)
+        if previous is not None:
+            # Raw early and main CPIO may both declare their root/directories.
+            require(previous[0] != container and previous[1] == stat.S_IFDIR
+                    and kind == stat.S_IFDIR, "duplicate_cpio_name")
+        else:
+            self.names[name] = (container, kind)
+        for ancestor_count in range(1, len(name.split("/"))):
+            ancestor = "/".join(name.split("/")[:ancestor_count])
+            existing = self.names.get(ancestor)
+            require(existing is None or existing[1] == stat.S_IFDIR, "non_directory_path_ancestor")
+            self.required_directories.add(ancestor)
+        if kind != stat.S_IFDIR:
+            require(name not in self.required_directories, "non_directory_path_ancestor")
+        protected = is_protected(name)
+        if protected:
+            require(len(self.protected) < MAX_AUDIT_ENTRIES, "protected_entry_limit")
+            public_name = name if name in PROTECTED_FILES or name == HINT else "etc/cmdline.d/[fragment]"
+            entry = dict(name=public_name, size=size, regular=kind == stat.S_IFREG,
+                         nlink=nlink, sha256=hashlib.sha256(content).hexdigest(),
+                         exact_generic_btrfs=name == HINT and content == GENERIC_BTRFS)
+            if public_name != name:
+                entry["name_sha256"] = hashlib.sha256(name.encode()).hexdigest()
+            self.protected.append(entry)
+            require(kind == stat.S_IFREG and nlink == 1, "protected_entry_not_single_regular")
+            if name == HINT:
+                require(content == GENERIC_BTRFS, "unexpected_cmdline_fragment_or_bytes")
+            elif name == "etc/machine-id":
+                require(size == 0, "nonempty_protected_field")
+            else:
+                raise Rejected("unexpected_protected_field")
+        if name == PROTECTED_TREE:
+            require(kind == stat.S_IFDIR, "cmdline_directory_alias")
+        if touches_protected(name) and not protected and name != PROTECTED_TREE:
+            require(kind == stat.S_IFDIR, "protected_ancestor_not_directory")
+        if kind != stat.S_IFDIR:
+            key = (container, devmajor, devminor, ino)
+            existing = self.inodes.get(key)
+            if existing:
+                require(not (protected or existing[0]), "protected_hardlink_alias")
+            else:
+                self.inodes[key] = (protected, nlink)
+        if kind == stat.S_IFLNK:
+            require(not touches_protected(name), "protected_symlink_alias")
+            self.symlinks[name] = link_target(content)
+        if name == "init":
+            require(kind in (stat.S_IFREG, stat.S_IFLNK), "invalid_init_entry")
+            self.init_present = True
+            self.init_container = container
+
+    def aliases(self):
+        # Resolve symlinks in filesystem order: expand foo before a later '..'.
+        # Lexically normalizing foo/../fstab first would miss protected aliases.
+        for name, target in self.symlinks.items():
+            stack = []
+            pending = ([] if target.startswith("/") else name.split("/")[:-1]) + target.split("/")
+            seen = set()
+            substitutions = 0
+            steps = 0
+            while pending:
+                steps += 1
+                require(steps <= 4096, "symlink_walk_limit")
+                piece = pending.pop(0)
+                if piece in ("", "."):
+                    continue
+                if piece == "..":
+                    if stack:
+                        stack.pop()
+                    continue
+                stack.append(piece)
+                prefix = "/".join(stack)
+                require(len(prefix) <= MAX_NAME, "symlink_path_limit")
+                if prefix in self.symlinks:
+                    state = (tuple(stack), tuple(pending))
+                    require(state not in seen, "symlink_cycle")
+                    seen.add(state)
+                    substitutions += 1
+                    require(substitutions <= 40, "symlink_chain_limit")
+                    replacement = self.symlinks[prefix]
+                    stack = [] if replacement.startswith("/") else stack[:-1]
+                    pending = replacement.split("/") + pending
+                    require(len(pending) <= MAX_NAME, "symlink_path_limit")
+            require(not touches_protected("/".join(stack)), "protected_symlink_alias")
+
+    def cpio(self, data, start=0):
+        position = start
+        self.containers += 1
+        require(self.containers <= 2, "cpio_container_limit")
+        container = self.containers
+        while True:
+            require(len(data) - position >= 110, "truncated_cpio_header")
+            magic = data[position:position + 6]
+            require(magic in (b"070701", b"070702"), "invalid_cpio_magic")
+            header = data[position + 6:position + 110]
+            require(all(c in b"0123456789abcdefABCDEF" for c in header), "nonhex_cpio_header")
+            fields = tuple(int(header[i:i + 8], 16) for i in range(0, 104, 8))
+            size, namesize, check = fields[6], fields[11], fields[12]
+            require(1 <= namesize <= MAX_NAME, "cpio_name_limit")
+            require(size <= self.max_expanded, "cpio_file_limit")
+            position += 110
+            require(position + namesize <= len(data), "truncated_cpio_name")
+            rawname = data[position:position + namesize]
+            position += namesize
+            aligned = start + ((position - start + 3) // 4 * 4)
+            require(aligned <= len(data) and not any(data[position:aligned]), "invalid_name_alignment")
+            position = aligned
+            require(position + size <= len(data), "truncated_cpio_payload")
+            content = memoryview(data)[position:position + size]
+            position += size
+            aligned = start + ((position - start + 3) // 4 * 4)
+            require(aligned <= len(data) and not any(data[position:aligned]), "invalid_data_alignment")
+            position = aligned
+            if magic == b"070702":
+                require(sum(content) & 0xffffffff == check, "cpio_crc_mismatch")
+            else:
+                require(check == 0, "nonzero_newc_check")
+            if rawname == b"TRAILER!!!\0":
+                require(size == 0 and check == 0, "invalid_cpio_trailer")
+                self.expanded += position - start
+                require(self.expanded <= self.max_expanded, "expanded_byte_limit")
+                return position
+            name = canonical_name(rawname, fields[1])
+            self.member(container, name, fields, content)
+
+    def gzip(self, data, start):
+        decoder = zlib.decompressobj(31)
+        expanded = bytearray()
+        cursor = start
+        try:
+            while not decoder.eof:
+                require(cursor < len(data) or decoder.unconsumed_tail, "truncated_gzip_stream")
+                if decoder.unconsumed_tail:
+                    chunk = decoder.unconsumed_tail
+                else:
+                    chunk = data[cursor:cursor + 65536]
+                    cursor += len(chunk)
+                part = decoder.decompress(chunk, 65536)
+                expanded.extend(part)
+                require(len(expanded) + self.expanded <= self.max_expanded, "expanded_byte_limit")
+            # zlib checks gzip CRC32 and ISIZE before eof becomes true.
+            consumed = cursor - len(decoder.unused_data)
+        except zlib.error:
+            raise Rejected("invalid_gzip_stream") from None
+        self.gzip_streams += 1
+        require(self.gzip_streams == 1, "gzip_stream_limit")
+        trailer_end = self.cpio(expanded)
+        require(zero_padding(expanded, trailer_end) == len(expanded), "unexplained_expanded_tail")
+        self.expanded += len(expanded) - trailer_end
+        require(self.expanded <= self.max_expanded, "expanded_byte_limit")
+        return consumed
+
+    def parse(self, data):
+        position = 0
+        if data[:6] in (b"070701", b"070702"):
+            raw_end = self.cpio(data)
+            position = zero_padding(data, raw_end)
+            # Raw CPIO is an optional early container, not another main archive.
+            self.expanded += position - raw_end
+        require(data[position:position + 2] == b"\x1f\x8b", "missing_main_gzip")
+        position = self.gzip(data, position)
+        require(zero_padding(data, position) == len(data), "unexplained_archive_tail")
+        self.aliases()
+        require(self.init_present and self.init_container == self.containers, "missing_main_init")
+
+    def result(self):
+        return dict(policy=POLICY, cpio_containers=self.containers,
+                    gzip_streams=self.gzip_streams, members=self.members,
+                    expanded_bytes=self.expanded, protected_entries=self.protected,
+                    protected_entries_limit=MAX_AUDIT_ENTRIES, init_present=self.init_present)
+
+
+def validate(path, max_expanded_bytes=MAX_EXPANDED):
+    audit = Audit(max_expanded_bytes)
+    result = dict(status="failed", reason="unread_archive", archive_bytes=0, archive_sha256=None)
+    try:
+        require(1 <= max_expanded_bytes <= MAX_EXPANDED, "invalid_expanded_limit")
+        fd = os.open(path, os.O_RDONLY | os.O_NOFOLLOW)
+        with os.fdopen(fd, "rb") as handle:
+            before = os.fstat(handle.fileno())
+            require(stat.S_ISREG(before.st_mode), "archive_not_regular")
+            require(0 < before.st_size <= MAX_ARCHIVE, "archive_byte_limit")
+            data = handle.read(MAX_ARCHIVE + 1)
+            after = os.fstat(handle.fileno())
+            require((before.st_dev, before.st_ino, before.st_size, before.st_mtime_ns, before.st_ctime_ns)
+                    == (after.st_dev, after.st_ino, after.st_size, after.st_mtime_ns, after.st_ctime_ns)
+                    and len(data) == before.st_size, "archive_changed_during_read")
+        result.update(archive_bytes=len(data), archive_sha256=hashlib.sha256(data).hexdigest())
+        audit.parse(data)
+        result.update(status="passed", reason=None)
+    except Rejected as failure:
+        result["reason"] = str(failure)
+    except OSError:
+        result["reason"] = "archive_read_error"
+    result.update(audit.result())
+    return result
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("initramfs", type=Path)
+    parser.add_argument("--audit-json", type=Path)
+    parser.add_argument("--max-expanded-bytes", type=int, default=MAX_EXPANDED)
+    args = parser.parse_args()
+    result = validate(args.initramfs, args.max_expanded_bytes)
+    serialized = json.dumps(result, sort_keys=True, indent=2) + "\n"
+    if args.audit_json:
+        try:
+            fd = os.open(args.audit_json, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o600)
+            with os.fdopen(fd, "w") as handle:
+                handle.write(serialized)
+        except OSError:
+            print("PINEPHONE_PRO_INITRAMFS_AUDIT_WRITE_FAILED", file=sys.stderr)
+            return 1
+    print(serialized, end="")
+    return 0 if result["status"] == "passed" else 1
+
+
+if __name__ == "__main__":
+    sys.exit(main())

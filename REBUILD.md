@@ -2,7 +2,7 @@
 
 The release source asset is `pinephone-pro-fedora-sources-20261011.tar.zst`. Verify it against the release checksums before extraction. Its member inventory and component manifests identify the provided inputs; the matching source RPMs accompany the custom binary RPMs.
 
-This is a reconstruction kit and a record of the tested build, **not a one-command reproducible image builder**. Some recipes originated in an earlier build environment. Historical checkpoints describe their own stage, not the final release status. Adapt toolchain locations and isolated VM paths, and inspect dependencies before running scripts. Do not run historical host/device helpers as installation instructions.
+This is a reconstruction kit and a record of the tested build, **not a one-command reproducible image builder**. Some recipes originated in an earlier build environment. Private checkpoint records are excluded. Retained source manifests and reference scripts describe their own stage, not the final release status. Adapt toolchain locations and isolated VM paths, and inspect dependencies before running scripts. Do not run historical host/device helpers as installation instructions.
 
 ## What was built
 
@@ -38,4 +38,4 @@ The kit preserves source provenance, configuration and recipes, but does not pin
 
 Device-support release 3 uses newly fetched pinned inputs; it is not a claim to have recovered every byte of an older lost release. The release evidence identifies those replacements. The original kernel-module signing private key is intentionally absent; generating a new key and compiling a matching kernel/module set is the correct route for a new kernel build.
 
-Historical VM launchers, checkpoints and collectors may refer to unavailable build paths or helper dependencies. Treat them as technical evidence to adapt. The release's successful headless VM and filesystem tests establish the delivered artifact's tested state, not a portable unattended rebuild pipeline or full phone functionality.
+Historical VM launchers and reference collectors may refer to unavailable build paths or helper dependencies. Treat them as technical evidence to adapt. The release's successful headless VM and filesystem tests establish the delivered artifact's tested state, not a portable unattended rebuild pipeline or full phone functionality.

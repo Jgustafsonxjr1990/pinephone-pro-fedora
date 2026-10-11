@@ -1,0 +1,2 @@
+Patch0060 skipped: stock signed Linux7.2.9 has no brcmf WiFi child node and no host-wake interrupt properties in the PPP DTS. The downstream patch only comments out those three already absent properties. No manual source edit needed.
+Fedora eg25-manager integration: adapted DanctNIX remove-modem-node and add-modem-ri patches. Removed orphan quectel,eg25 serdev child and its unused pinctrl block, retained both always-on modem supplies, added RI GPIO0_PA1 wakeup key. Exact diff saved as0091-fedora-eg25-manager-dts.patch.

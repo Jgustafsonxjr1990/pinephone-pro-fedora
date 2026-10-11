@@ -1,0 +1,2 @@
+# Preserve upstream patch/config bytes and their checksum provenance.
+sources/** -whitespace
